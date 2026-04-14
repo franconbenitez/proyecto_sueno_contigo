@@ -12,7 +12,7 @@ Route::get('/catalogo', function () {
     });
 
 Route::get('/quienes-somos', function () { 
-    return view('quienes_somos'); 
+    return view('quienes-somos'); 
     });
 
 Route::get('/comercializacion', function () { 
