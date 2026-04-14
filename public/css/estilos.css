@@ -500,3 +500,131 @@ p, a, li, input, button {
         font-size: 1.1rem;
     }
 }
+
+
+
+/* ================================================
+   ESTILOS PARA: quienes_somos.blade.php
+   Agregar al final de tu archivo public/css/estilos.css
+   ================================================ */
+
+/* --- Banner de página (encabezado interno) --- */
+.banner-pagina {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+    padding: 60px 0;
+}
+
+.titulo-pagina {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    color: #6d1f4e;
+    font-weight: 600;
+}
+
+.subtitulo-pagina {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1rem;
+    color: #9c4775;
+}
+
+/* --- Imagen sección quiénes somos --- */
+.imagen-quienes {
+    max-width: 320px;
+    border: 3px solid #f8bbd9;
+    box-shadow: 0 8px 24px rgba(200, 80, 130, 0.15);
+}
+
+/* --- Texto general de la página --- */
+.texto-quienes {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* --- Sección esencia --- */
+.seccion-esencia {
+    background-color: #fff0f6;
+    border-radius: 16px;
+    margin: 0 1rem;
+}
+
+.icono-esencia {
+    font-size: 3.5rem;
+}
+
+/* --- Cards de valores --- */
+.card-valor {
+    border: 1px solid #f8bbd9;
+    border-radius: 16px;
+    background-color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-valor:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(200, 80, 130, 0.12);
+}
+
+.icono-valor {
+    font-size: 2.2rem;
+}
+
+/* --- Sección equipo --- */
+.seccion-equipo {
+    background-color: #fce4ec;
+}
+
+.card-equipo {
+    border: none;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(200, 80, 130, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.card-equipo:hover {
+    transform: translateY(-4px);
+}
+
+/* Avatar circular con inicial */
+.avatar-equipo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f48fb1, #ce5e90);
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Cormorant Garamond', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(200, 80, 130, 0.25);
+}
+
+.nombre-equipo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: #6d1f4e;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.rol-equipo {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    color: #ce5e90;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+}
+
+/* --- Sección CTA (llamado a la acción) --- */
+.seccion-cta {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+    border-radius: 16px;
+    margin: 0 1rem 2rem 1rem;
+}
