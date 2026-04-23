@@ -19,7 +19,7 @@
         <p class="subtitulo-hero">Pijamas & Lencería</p>
 
         {{-- Frase --}}
-        <p class="frase-hero">Dormir nunca se sintió tan lindo 💖</p>
+        <p class="frase-hero">Dormir nunca se sintió tan lindo</p>
 
         {{-- Botón principal --}}
         <a href="/catalogo" class="btn btn-hero mt-3">Ver catálogo</a>
@@ -96,18 +96,18 @@
 <section class="py-5 seccion-coleccion">
     <div class="container">
 
-        <h2 class="titulo-seccion text-center mb-4">✨ Nueva Colección</h2>
+        <h2 class="titulo-seccion text-center mb-4"> Nueva Colección</h2>
 
         <div class="row g-4 justify-content-center">
 
             {{-- Producto 1 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/producto1.jpg') }}" 
+                    <img src="{{ asset('imagenes/pijama1.jpeg') }}" 
                          class="card-img-top imagen-producto" 
                          alt="Producto 1">
                     <div class="card-body">
-                        <h5 class="card-title">Pijama Floral</h5>
+                        <h5 class="card-title">Pijama de Corazones</h5>
                         <p class="card-text text-muted">Suave, fresco y cómodo</p>
                         <p class="precio">$12.500</p>
                         <a href="/catalogo" class="btn btn-catalogo">Ver más</a>
@@ -118,11 +118,11 @@
             {{-- Producto 2 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/producto2.jpg') }}" 
+                    <img src="{{ asset('imagenes/pijama2.jpeg') }}" 
                          class="card-img-top imagen-producto" 
                          alt="Producto 2">
                     <div class="card-body">
-                        <h5 class="card-title">Set Lencería Lavanda</h5>
+                        <h5 class="card-title">Conjunto de Mantel</h5>
                         <p class="card-text text-muted">Elegante y delicado</p>
                         <p class="precio">$18.000</p>
                         <a href="/catalogo" class="btn btn-catalogo">Ver más</a>
@@ -133,13 +133,13 @@
             {{-- Producto 3 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/producto3.jpg') }}" 
+                    <img src="{{ asset('imagenes/pijama4.jpeg') }}" 
                          class="card-img-top imagen-producto" 
                          alt="Producto 3">
                     <div class="card-body">
-                        <h5 class="card-title">Bata Satinada</h5>
+                        <h5 class="card-title">Pijama Corazones Azules</h5>
                         <p class="card-text text-muted">Lujo y comodidad</p>
-                        <p class="precio">$22.000</p>
+                        <p class="precio">$15.000</p>
                         <a href="/catalogo" class="btn btn-catalogo">Ver más</a>
                     </div>
                 </div>
@@ -154,18 +154,18 @@
 <section class="py-5 seccion-vendidos">
     <div class="container">
 
-        <h2 class="titulo-seccion text-center mb-4">🔥 Más Vendidos</h2>
+        <h2 class="titulo-seccion text-center mb-4"> Más Vendidos</h2>
 
         <div class="row g-4 justify-content-center">
 
             {{-- Producto 4 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/producto4.jpg') }}" 
+                    <img src="{{ asset('imagenes/pijama6.jpeg') }}" 
                          class="card-img-top imagen-producto" 
                          alt="Producto 4">
                     <div class="card-body">
-                        <h5 class="card-title">Pijama Polar</h5>
+                        <h5 class="card-title">Camisa Moñitos</h5>
                         <p class="card-text text-muted">Abrigado y suave</p>
                         <p class="precio">$15.000</p>
                         <a href="/catalogo" class="btn btn-catalogo">Ver más</a>
@@ -176,11 +176,11 @@
             {{-- Producto 5 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/producto5.jpg') }}" 
+                    <img src="{{ asset('imagenes/pijama10.jpeg') }}" 
                          class="card-img-top imagen-producto" 
                          alt="Producto 5">
                     <div class="card-body">
-                        <h5 class="card-title">Pantuflas Conejito</h5>
+                        <h5 class="card-title">Conjunto Hello Kitty</h5>
                         <p class="card-text text-muted">Tiernas y cómodas</p>
                         <p class="precio">$8.500</p>
                         <a href="/catalogo" class="btn btn-catalogo">Ver más</a>
@@ -191,11 +191,11 @@
             {{-- Producto 6 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/producto6.jpg') }}" 
+                    <img src="{{ asset('imagenes/pijama9.jpeg') }}" 
                          class="card-img-top imagen-producto" 
                          alt="Producto 6">
                     <div class="card-body">
-                        <h5 class="card-title">Body Encaje</h5>
+                        <h5 class="card-title">Camisa Osito</h5>
                         <p class="card-text text-muted">Sensual y confortable</p>
                         <p class="precio">$20.000</p>
                         <a href="/catalogo" class="btn btn-catalogo">Ver más</a>
@@ -207,48 +207,45 @@
     </div>
 </section>
 
-
-{{-- ================================================
-     SECCIÓN 6: CATEGORÍAS INTERACTIVAS
-     ================================================ --}}
-<section class="py-5 text-center">
-    <div class="container">
-
-        <h2 class="titulo-seccion mb-4">🛍️ Categorías</h2>
-
-        <div class="row g-3 justify-content-center">
-
-            <div class="col-6 col-md-3">
-                <a href="/catalogo?categoria=pijamas" class="card-categoria">
-                    <span class="icono-categoria">🩷</span>
-                    <p class="nombre-categoria">Pijamas</p>
-                </a>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <a href="/catalogo?categoria=lenceria" class="card-categoria">
-                    <span class="icono-categoria">✨</span>
-                    <p class="nombre-categoria">Lencería</p>
-                </a>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <a href="/catalogo?categoria=batas" class="card-categoria">
-                    <span class="icono-categoria">🌸</span>
-                    <p class="nombre-categoria">Batas</p>
-                </a>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <a href="/catalogo?categoria=pantuflas" class="card-categoria">
-                    <span class="icono-categoria">🐰</span>
-                    <p class="nombre-categoria">Pantuflas</p>
-                </a>
-            </div>
-
+{{-- SECCIÓN: CATEGORÍAS VINCULADAS --}}
+<div class="container my-5">
+    <h2 class="titulo-seccion text-center mb-4">Categorías</h2>
+    <div class="row g-4 text-center">
+        
+        <div class="col-6 col-md-3">
+            <a href="/catalogo/pijamas" class="text-decoration-none">
+                <div class="card h-100 border-0 shadow-sm p-4 card-categoria-home">
+                    <p class="mb-0 color-primario">Pijamas</p>
+                </div>
+            </a>
         </div>
+
+        <div class="col-6 col-md-3">
+            <a href="/catalogo/lenceria" class="text-decoration-none">
+                <div class="card h-100 border-0 shadow-sm p-4 card-categoria-home">
+                    <p class="mb-0 color-primario">Lencería</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="/catalogo/batas" class="text-decoration-none">
+                <div class="card h-100 border-0 shadow-sm p-4 card-categoria-home">
+                    <p class="mb-0 color-primario">Batas</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="/catalogo/pantuflas" class="text-decoration-none">
+                <div class="card h-100 border-0 shadow-sm p-4 card-categoria-home">
+                    <p class="mb-0 color-primario">Pantuflas</p>
+                </div>
+            </a>
+        </div>
+
     </div>
-</section>
+</div>
 
 
 {{-- SECCIÓN 7: RESEÑA --}}
@@ -288,48 +285,46 @@
 </section>
 
 
-{{-- SECCIÓN 8: PROMOCIONES (CARRUSEL) --}}
+{{-- SECCIÓN 8: PROMOCIONES (CARRUSEL DE 2 IMÁGENES) --}}
 <section class="py-5 seccion-promociones">
     <div class="container">
 
-        <h2 class="titulo-seccion text-center mb-4">🎉 Promociones</h2>
+        <h2 class="titulo-seccion text-center mb-4">Promociones</h2>
 
         <div id="carruselPromos" class="carousel slide" data-bs-ride="carousel">
 
-            <div class="carousel-inner rounded-4">
+            <div class="carousel-inner rounded-4 shadow-sm">
 
+                {{-- Promoción 1 --}}
                 <div class="carousel-item active">
-                    <img src="{{ asset('imagenes/promo1.jpg') }}" 
+                    <img src="{{ asset('imagenes/promo1.png') }}" 
                          class="d-block w-100 imagen-promo" 
                          alt="Promoción 1">
                 </div>
 
+                {{-- Promoción 2 --}}
                 <div class="carousel-item">
-                    <img src="{{ asset('imagenes/promo2.jpg') }}" 
+                    <img src="{{ asset('imagenes/promo2.png') }}" 
                          class="d-block w-100 imagen-promo" 
                          alt="Promoción 2">
                 </div>
 
-                <div class="carousel-item">
-                    <img src="{{ asset('imagenes/promo3.jpg') }}" 
-                         class="d-block w-100 imagen-promo" 
-                         alt="Promoción 3">
-                </div>
-
             </div>
 
+            {{-- Controles de navegación --}}
             <button class="carousel-control-prev" type="button" 
                     data-bs-target="#carruselPromos" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
             </button>
             <button class="carousel-control-next" type="button" 
                     data-bs-target="#carruselPromos" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
             </button>
 
         </div>
     </div>
 </section>
-
 
 @endsection

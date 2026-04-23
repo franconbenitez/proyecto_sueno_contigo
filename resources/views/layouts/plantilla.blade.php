@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sueño Contigo</title>
+    <link rel="icon" type="image/png" href="{{ asset('imagenes/logolila.png') }}">
 
     {{-- Bootstrap CSS local --}}
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -27,7 +28,7 @@
 
             {{-- Logo a la izquierda --}}
             <a class="navbar-brand" href="/">
-                🌙 Sueño Contigo
+                <img src="{{ asset ('imagenes/logoblanco.png') }}" alt="Logo Sueño Contigo" style="height: 40px; ">
             </a>
 
             {{-- Links del centro --}}
@@ -35,14 +36,32 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/catalogo">Catálogo</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catálogo
+                    </a>
+                    <ul class="dropdown-menu border-0 shadow-sm">
+                        {{-- NUEVA OPCIÓN --}}
+                        <li><a class="dropdown-item fw-bold" href="/catalogo/productos">Ver todo</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        
+                        <li><a class="dropdown-item" href="/catalogo/pijamas">Pijamas</a></li>
+                        <li><a class="dropdown-item" href="/catalogo/lenceria">Lencería</a></li>
+                        <li><a class="dropdown-item" href="/catalogo/pantuflas">Pantuflas</a></li>
+                        <li><a class="dropdown-item" href="/catalogo/batas">Batas</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/quienes-somos">Quiénes somos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/informacion">Información</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/comercializacion">Comercialización</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/terminos">Términos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contacto">Contacto</a>
@@ -99,7 +118,7 @@
 
         {{-- Logo centrado --}}
         <a class="navbar-brand mb-0 brand-mobile" href="/">
-            🌙 Sueño Contigo
+            <img src="{{ asset('imagenes/logoblanco.png') }}" alt="Logo Sueño Contigo" style="height: 30px; width: auto;">
         </a>
 
         {{-- Solo carrito a la derecha --}}
@@ -115,7 +134,9 @@
          ================================================ --}}
     <div class="offcanvas offcanvas-start" id="menuLateral">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title">🌙 Sueño Contigo</h5>
+            <h5 class="offcanvas-title" id="menuLateralLabel">
+                <img src="{{ ('imagenes/logoblanco.png') }}" alt="Logo" style="height: 30px; width:auto;">
+            </h5>
             <button type="button" class="btn-close btn-close-white"
                     data-bs-dismiss="offcanvas"></button>
         </div>
@@ -135,6 +156,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link-lateral" href="/informacion">Información</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-lateral" href="/comercializacion">Comercialización</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-lateral" href="/terminos">Términos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link-lateral" href="/contacto">Contacto</a>
@@ -168,13 +195,15 @@
     {{-- CONTENIDO DE CADA PÁGINA --}}
     @yield('contenido')
 
-
-    {{-- ================================================
+{{-- ================================================
          FOOTER
          ================================================ --}}
     <footer class="footer-principal text-center py-4 mt-5">
-        <p class="footer-nombre mb-2">🌙 Sueño Contigo</p>
-        <p class="footer-sub mb-3">Pijamas & Lencería</p>
+        
+        {{-- Aquí reemplazamos el texto por tu logo --}}
+        <div class="footer-logo-container mb-3">
+            <img src="{{ asset('imagenes/logoblanco.png') }}" alt="Sueño Contigo" style="height: 50px; width: auto;">
+        </div>
 
         <div class="footer-redes mb-3">
             <a href="#" class="icono-red" title="Instagram">

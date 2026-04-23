@@ -33,28 +33,41 @@ p, a, li, input, button {
 
 
 /* ===========================
-   NAVBAR ESCRITORIO
-   =========================== */
-#navbar-principal {
-    background-color: var(--color-principal);
-    padding: 12px 0;
-}
-
-#navbar-principal .navbar-brand {
-    font-family: 'Cormorant Garamond', serif;
+   NAVBAR ESCRITORIO font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
     font-weight: 600;
     color: white;
     letter-spacing: 1px;
     white-space: nowrap;
+   =========================== */
+#navbar-principal {
+    background-color: var(--color-rosa-claro);
+    padding: 12px 0;
+}
+
+#navbar-principal .navbar-brand{
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+#navbar-principal .navbar-brand img{
+    transition: transform 0.3s ease;
+}
+
+#navbar-principal .navbar-brand img:hover{
+    transform: scale(1.05);
 }
 
 #navbar-principal .nav-link {
     color: rgba(255, 255, 255, 0.85);
-    font-size: 0.88rem;
+    font-size: 1.05rem;
     letter-spacing: 0.4px;
     transition: color 0.2s;
     padding: 6px 10px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 0.9rem;
 }
 
 #navbar-principal .nav-link:hover {
@@ -126,17 +139,25 @@ p, a, li, input, button {
    NAVBAR MOBILE
    =========================== */
 #navbar-mobile {
-    background-color: var(--color-principal);
-    min-height: 56px;
-    padding: 8px 12px;
+    background-color: var(--color-rosa-claro);
+    height: 60px;
+    padding: 0 12px;
 }
 
 .brand-mobile {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: white !important;
-    letter-spacing: 1px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.brand-mobile img{
+    height: 35px;
+    width: auto;
+    object-fit: contain;
 }
 
 
@@ -144,7 +165,7 @@ p, a, li, input, button {
    MENÚ LATERAL (OFFCANVAS)
    =========================== */
 #menuLateral {
-    background-color: var(--color-principal);
+    background-color: var(--color-rosa-claro);
 }
 
 #menuLateral .offcanvas-title {
@@ -209,24 +230,20 @@ p, a, li, input, button {
 
 
 /* ===========================
-   FOOTER
+    FOOTER
    =========================== */
 .footer-principal {
-    background-color: var(--color-principal);
+    background-color: var(--color-rosa-claro);
     color: white;
 }
 
-.footer-nombre {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+/* Nueva clase para el logo del footer */
+.footer-logo-container img {
+    transition: transform 0.3s ease;
 }
 
-.footer-sub {
-    font-size: 0.85rem;
-    opacity: 0.8;
-    letter-spacing: 1px;
+.footer-logo-container img:hover {
+    transform: scale(1.05);
 }
 
 .footer-copy {
@@ -254,17 +271,19 @@ p, a, li, input, button {
 
 
 /* ===========================
-   BANNER HERO
+   BANNER HERO background: linear-gradient(135deg, var(--color-principal), var(--color-rosa));
    =========================== */
 .banner-hero {
-    background: linear-gradient(135deg, var(--color-principal), var(--color-rosa));
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/imagenes/banner.jpeg');
+    background-size: cover;
+    height: 80vh;
     color: white;
     min-height: 90vh;
     padding: 60px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: left;
 }
 
 .logo-hero {
@@ -273,7 +292,7 @@ p, a, li, input, button {
 }
 
 .titulo-hero {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
     font-size: 3.5rem;
     font-weight: 600;
     letter-spacing: 3px;
@@ -472,10 +491,25 @@ p, a, li, input, button {
     padding: 50px 0;
 }
 
+/* Le damos un fondo al contenedor de las imágenes */
+.seccion-promociones .carousel-inner {
+    background-color: #f3e5f5 !important; 
+    border-radius: 15px; 
+}
+
+/* Ajustamos la imagen */
 .imagen-promo {
-    height: 350px;
-    object-fit: cover;
-    border-radius: 12px;
+    width: auto !important; /* IMPORTANTE: No la estires a todo el ancho */
+    height: 400px !important; /* Altura recomendada */
+    max-height: 400px !important; 
+    object-fit: contain !important; /* Muestra el 2x1 entero */
+    margin: 0 auto; /* Centra el cuadrado de 1080x1080 en el lila */
+}
+
+@media (max-width: 768px) {
+    .imagen-promo {
+        height: 250px;
+    }
 }
 
 
@@ -627,4 +661,371 @@ p, a, li, input, button {
     background: linear-gradient(135deg, #fce4ec, #f8bbd9);
     border-radius: 16px;
     margin: 0 1rem 2rem 1rem;
+}
+
+/* ===========================
+    ESTILOS PÁGINAS LEGALES (Términos, Comercialización, etc.)
+   =========================== */
+.container-legal {
+    min-height: 70vh;
+}
+
+.titulo-legal {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: #5d4d7a; /* Violeta oscuro que ya venís usando */
+}
+
+.card-legal {
+    background-color: #fffafa; /* Blanco hueso para que no canse la vista */
+    border-radius: 15px;
+    border: none;
+}
+
+.seccion-legal h4 {
+    color: #5d4d7a;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.seccion-legal p {
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* ===========================
+    ESTILOS ESPECÍFICOS INFORMACIÓN
+   =========================== */
+.tabla-talles {
+    border: 1px solid #f8d7da; /* Color rosa suave que combina con tu marca */
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.tabla-talles thead {
+    background-color: var(--color-rosa-claro);
+    color: white;
+}
+
+.tabla-talles th, .tabla-talles td {
+    text-align: center;
+    padding: 12px;
+    vertical-align: middle;
+}
+
+.seccion-legal ul li i {
+    color: var(--color-rosa-claro);
+    font-weight: bold;
+}
+
+/* ================================================
+   ESTILOS PARA: login.blade.php y registro.blade.php
+   Agregar al final de public/css/estilos.css
+   ================================================ */
+
+/* --- Sección contenedora --- */
+.seccion-auth {
+    min-height: calc(100vh - 160px);
+    background: linear-gradient(160deg, #fce4ec 0%, #fff0f6 50%, #f8bbd9 100%);
+    padding: 40px 16px;
+}
+
+/* --- Card del formulario --- */
+.card-auth {
+    background: #fff;
+    border-radius: 24px;
+    padding: 40px 36px;
+    box-shadow: 0 12px 40px rgba(180, 60, 120, 0.13);
+    border: 1px solid #f8bbd9;
+}
+
+@media (max-width: 480px) {
+    .card-auth {
+        padding: 28px 18px;
+        border-radius: 18px;
+    }
+}
+
+/* --- Encabezado --- */
+.auth-icono {
+    font-size: 2.6rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.auth-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #6d1f4e;
+    margin-bottom: 4px;
+}
+
+.auth-subtitulo {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    color: #9c4775;
+    margin-bottom: 0;
+}
+
+/* --- Labels e inputs --- */
+.auth-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #6d1f4e;
+    margin-bottom: 6px;
+    display: block;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #f0c0d8;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.97rem;
+    color: #3a3a3a;
+    background-color: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.auth-input:focus {
+    border-color: #ce5e90;
+    box-shadow: 0 0 0 3px rgba(206, 94, 144, 0.15);
+}
+
+.auth-input::placeholder {
+    color: #cba0b8;
+}
+
+/* --- Input con ojo (contraseña) --- */
+.input-password-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-password-wrap .auth-input {
+    padding-right: 44px;
+}
+
+.btn-ojo {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ce5e90;
+    font-size: 1rem;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.btn-ojo:hover {
+    color: #6d1f4e;
+}
+
+/* --- Recordar + olvidé --- */
+.recordar-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.88rem;
+    color: #5a5a5a;
+    user-select: none;
+}
+
+.recordar-check {
+    accent-color: #ce5e90;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.link-olvide {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    color: #ce5e90;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.link-olvide:hover {
+    color: #6d1f4e;
+    text-decoration: underline;
+}
+
+/* --- Botón principal del formulario --- */
+.btn-auth-primary {
+    display: block;
+    width: 100%;
+    padding: 13px 24px;
+    background: linear-gradient(135deg, #f48fb1, #ce5e90);
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(206, 94, 144, 0.35);
+}
+
+.btn-auth-primary:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(206, 94, 144, 0.4);
+}
+
+.btn-auth-primary:active {
+    transform: translateY(0);
+}
+
+/* --- Separador "o continuá con" --- */
+.separador-auth {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #c0a0b0;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem;
+}
+
+.separador-auth::before,
+.separador-auth::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #f0c0d8;
+}
+
+/* --- Botones sociales --- */
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 11px 16px;
+    background-color: #fff;
+    border: 1.5px solid #e8c8d8;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #3a3a3a;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-social:hover {
+    background-color: #fff0f6;
+    border-color: #ce5e90;
+    color: #3a3a3a;
+    transform: translateY(-1px);
+}
+
+.icono-social {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* --- Pie del formulario --- */
+.auth-pie {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    color: #7a7a7a;
+    margin-bottom: 0;
+}
+
+.link-auth {
+    color: #ce5e90;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.link-auth:hover {
+    color: #6d1f4e;
+    text-decoration: underline;
+}
+
+/* ===========================
+    ESTILOS PÁGINA CONTACTO
+   =========================== */
+.color-primario {
+    color: #5d4d7a !important; /* El violeta de tu marca */
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #fce4ec; /* Rosa suave */
+    padding: 10px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #5d4d7a;
+    box-shadow: 0 0 0 0.25 mil rem rgba(93, 77, 122, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #5d4d7a;
+    font-size: 0.9rem;
+}
+
+.card-producto {
+    transition: transform 0.3s ease;
+    background-color: #fffafa;
+}
+
+.card-producto:hover {
+    transform: translateY(-10px);
+}
+
+.card-producto img {
+    height: 250px;
+    object-fit: cover; /* Mantiene la proporción de la foto del pijama */
+}
+
+/* Estilo para el dropdown del navbar */
+.dropdown-menu {
+    background-color: #fffafa;
+}
+
+.dropdown-item:hover {
+    background-color: #fce4ec;
+    color: #5d4d7a;
+}
+
+/* Efecto para las tarjetas de categorías en la Home */
+.card-categoria-home {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    background-color: #fffafa; /* El blanco lencería que usamos */
+}
+
+.card-categoria-home:hover {
+    transform: translateY(-8px);
+    background-color: #fce4ec; /* Rosa suave al pasar el mouse */
+    box-shadow: 0 10px 20px rgba(93, 77, 122, 0.15) !important;
+}
+
+.card-categoria-home p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #5d4d7a; /* El violeta de Sueño Contigo */
 }

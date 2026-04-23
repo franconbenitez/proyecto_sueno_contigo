@@ -1,38 +1,40 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PrincipalController;
+use App\Http\Controllers\CatalogoController;
+use App\Http\Controllers\QuienesSomosController;
+use App\Http\Controllers\ComercializacionController;
+use App\Http\Controllers\TerminosController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\InformacionController;
 
-Route::get('/', function () { 
-    return view('principal'); 
-    });
+// Página principal
+Route::get('/', [PrincipalController::class, 'index']);
 
-Route::get('/catalogo', function () { 
-    return view('catalogo'); 
-    });
+// Esta única línea maneja todas las categorías
+Route::get('/catalogo/{categoria}', [CatalogoController::class, 'mostrarCategoria']);
 
-Route::get('/quienes-somos', function () { 
-    return view('quienes-somos'); 
-    });
+// Quiénes somos
+Route::get('/quienes-somos', [QuienesSomosController::class, 'index']);
 
-Route::get('/comercializacion', function () { 
-    return view('comercializacion'); 
-    });
+// Comercialización
+Route::get('/comercializacion', [ComercializacionController::class, 'index']);
 
-Route::get('/terminos', function () { 
-    return view('terminos'); 
-    });
+// Términos y usos
+Route::get('/terminos', [TerminosController::class, 'index']);
 
-Route::get('/contacto', function () { 
-    return view('contacto'); 
-    });
+// Contacto (GET muestra el formulario, POST lo procesa)
+Route::get('/contacto', [ContactoController::class, 'index']);
+Route::post('/contacto', [ContactoController::class, 'procesar']);
 
-Route::post('/contacto', [ContactoController::class, 'procesar']); // Para el formulario [cite: 1337]
+// Login
+Route::get('/login', [LoginController::class, 'index']);
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Registro
+Route::get('/registro', [RegistroController::class, 'index']);
 
-Route::get('/registro', function () {
-    return view('registro');
-});
+//Informacion
+Route::get('/informacion', [InformacionController::class, 'index']);
