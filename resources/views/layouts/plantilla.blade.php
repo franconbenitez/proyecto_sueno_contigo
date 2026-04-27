@@ -93,8 +93,15 @@
 
                 {{-- Carrito --}}
                 <li class="nav-item">
-                    <a class="btn-icono-nav" href="#">
+                    <a class="btn-icono-nav position-relative" href="/carrito">
                         <i class="bi bi-bag-heart"></i>
+                        {{-- Badge con contador dinámico --}}
+                        @if(session('carrito') && count(session('carrito')) > 0)
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+                                {{ count(session('carrito')) }}
+                                <span class="visually-hidden">productos en carrito</span>
+                            </span>
+                        @endif
                     </a>
                 </li>
 
