@@ -149,7 +149,7 @@
                     <a class="nav-link-lateral" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link-lateral" href="/catalogo">Catálogo</a>
+                    <a class="nav-link-lateral" href="/catalogo/productos">Catálogo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link-lateral" href="/quienes-somos">Quiénes somos</a>

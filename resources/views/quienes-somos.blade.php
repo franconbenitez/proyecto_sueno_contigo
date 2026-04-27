@@ -6,26 +6,17 @@
 <section class="banner-pagina text-center py-5">
     <div class="container">
         <h1 class="titulo-pagina">Quiénes Somos</h1>
-        <p class="subtitulo-pagina">El corazón detrás de Sueño Contigo 🐱</p>
+        <p class="subtitulo-pagina">El corazón detrás de Sueño Contigo </p>
     </div>
 </section>
 
 
 {{-- SECCIÓN 2: PRESENTACIÓN DE LA MARCA --}}
+{{-- CORREGIDO: quitada la columna de imagen que quedaba vacía, ahora el texto ocupa el ancho completo --}}
 <section class="py-5">
     <div class="container">
-        <div class="row align-items-center g-5">
-
-            {{-- Imagen de la marca --}}
-            <div class="col-12 col-md-5 text-center">
-                <img src="{{ asset('imagenes/logo.png') }}"
-                     alt="Logo Sueño Contigo"
-                     class="img-fluid rounded-4 imagen-quienes"
-                     onerror="this.style.display='none'">
-            </div>
-
-            {{-- Texto de presentación --}}
-            <div class="col-12 col-md-7">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
                 <h2 class="titulo-seccion mb-3">Nuestra historia</h2>
                 <p class="texto-quienes">
                     <strong>Sueño Contigo</strong> es un emprendimiento familiar nacido con el objetivo
@@ -40,7 +31,6 @@
                     juntas buscando llegar a cada persona que valore el descanso y el confort.
                 </p>
             </div>
-
         </div>
     </div>
 </section>
@@ -59,7 +49,7 @@
                     como estar en pijamas.
                 </p>
                 <p class="frase-central mt-4">
-                    "Porque cada momento en casa merece sentirse especial 💖"
+                    "Porque cada momento en casa merece sentirse especial "
                 </p>
             </div>
         </div>
@@ -108,11 +98,10 @@
 <section class="py-5 seccion-equipo">
     <div class="container">
 
-        <h2 class="titulo-seccion text-center mb-5">Nuestro equipo 👩‍👩‍👧</h2>
+        <h2 class="titulo-seccion text-center mb-5">Nuestro equipo </h2>
 
         <div class="row g-4 justify-content-center text-center">
 
-            {{-- Integrante 1 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-equipo h-100 p-4">
                     <div class="avatar-equipo mx-auto mb-3">S</div>
@@ -122,7 +111,6 @@
                 </div>
             </div>
 
-            {{-- Integrante 2 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-equipo h-100 p-4">
                     <div class="avatar-equipo mx-auto mb-3">D</div>
@@ -132,7 +120,6 @@
                 </div>
             </div>
 
-            {{-- Integrante 3 --}}
             <div class="col-12 col-md-4">
                 <div class="card card-equipo h-100 p-4">
                     <div class="avatar-equipo mx-auto mb-3">E</div>
@@ -152,10 +139,10 @@
     <div class="container">
         <h2 class="titulo-seccion mb-3">¿Querés conocer nuestros productos?</h2>
         <p class="texto-quienes mb-4">Entrá al catálogo y encontrá la prenda perfecta para vos.</p>
-        <a href="/catalogo" class="btn btn-hero me-2">Ver catálogo</a>
+        {{-- CORREGIDO: lleva a /catalogo/productos --}}
+        <a href="/catalogo/productos" class="btn btn-hero me-2">Ver catálogo</a>
         <a href="/contacto" class="btn btn-catalogo">Contactarnos</a>
     </div>
 </section>
-
 
 @endsection
