@@ -483,34 +483,6 @@ p, a, li, input, button {
 }
 
 
-/* ===========================
-   PROMOCIONES
-   =========================== */
-.seccion-promociones {
-    background-color: var(--color-azul);
-    padding: 50px 0;
-}
-
-/* Le damos un fondo al contenedor de las imágenes */
-.seccion-promociones .carousel-inner {
-    background-color: #f3e5f5 !important; 
-    border-radius: 15px; 
-}
-
-/* Ajustamos la imagen */
-.imagen-promo {
-    width: auto !important; /* IMPORTANTE: No la estires a todo el ancho */
-    height: 400px !important; /* Altura recomendada */
-    max-height: 400px !important; 
-    object-fit: contain !important; /* Muestra el 2x1 entero */
-    margin: 0 auto; /* Centra el cuadrado de 1080x1080 en el lila */
-}
-
-@media (max-width: 768px) {
-    .imagen-promo {
-        height: 250px;
-    }
-}
 
 
 /* ===========================
@@ -1067,32 +1039,6 @@ p, a, li, input, button {
 }
 
 
-/* --- CARRUSEL DE PROMOCIONES CORREGIDO ---
-   Imágenes cuadradas 1080x1080: se muestran completas,
-   centradas, con altura fija proporcional y sin distorsión.
-   ------------------------------------------------ */
-.seccion-promociones .carousel-inner {
-    background-color: #f3e5f5;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.imagen-promo {
-    max-height: 420px;
-    width: auto !important;
-    max-width: 100%;
-    object-fit: contain;
-    margin: 0 auto;
-    display: block;
-}
-
-@media (max-width: 768px) {
-    .imagen-promo {
-        max-height: 280px;
-    }
-}
 
 
 /* --- TIPOGRAFÍA MEJORADA para páginas legales ---
@@ -1172,3 +1118,10 @@ p, a, li, input, button {
     color: white;
 }
 
+/* CARRUSEL PROMOCIONES - SOLUCIONADO */
+.seccion-promociones
+{background:var(--color-azul);padding:50px 0}
+#carouselPromociones 
+.carousel-inner{border-radius:15px;overflow:hidden;background:#f3e5f5}
+#carouselPromociones 
+.imagen-promo-nueva{width:100%;height:auto;aspect-ratio:3/1;object-fit:cover}

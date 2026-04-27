@@ -212,15 +212,17 @@
             <img src="{{ asset('imagenes/logoblanco.png') }}" alt="Sueño Contigo" style="height: 50px; width: auto;">
         </div>
 
-        <div class="footer-redes mb-3">
-            <a href="#" class="icono-red" title="Instagram">
-                <i class="bi bi-instagram"></i>
-            </a>
-            <a href="#" class="icono-red" title="WhatsApp">
+        <div class="footer-redes">
+            <a href="https://wa.me/543795340652" target="_blank" aria-label="WhatsApp">
                 <i class="bi bi-whatsapp"></i>
             </a>
-            <a href="#" class="icono-red" title="Email">
-                <i class="bi bi-envelope-heart"></i>
+
+            <a href="https://www.instagram.com/suenio.contigo" target="_blank" aria-label="Instagram">
+                <i class="bi bi-instagram"></i>
+            </a>
+
+            <a href="mailto:sueniaconmigopijamas@gmail.com" aria-label="Correo electrónico">
+                <i class="bi bi-envelope-fill"></i>
             </a>
         </div>
 

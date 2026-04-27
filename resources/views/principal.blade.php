@@ -258,31 +258,39 @@
 
         <h2 class="titulo-seccion text-center mb-4">Promociones</h2>
 
-        <div id="carruselPromos" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner rounded-4">
+        <div id="carouselPromociones" class="carousel slide" data-bs-ride="carousel">
+
+            {{-- Indicadores --}}
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselPromociones" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselPromociones" data-bs-slide-to="1"></button>
+            </div>
+
+            {{-- Imágenes --}}
+            <div class="carousel-inner rounded-4 shadow">
 
                 <div class="carousel-item active">
-                    <img src="{{ asset('imagenes/promo1.png') }}"
-                         class="d-block imagen-promo" alt="Promoción 1">
+                    <img src="{{ asset('imagenes/promo1.png') }}" class="d-block w-100 imagen-promo-nueva" alt="Promo 1">
                 </div>
 
                 <div class="carousel-item">
-                    <img src="{{ asset('imagenes/promo2.png') }}"
-                         class="d-block imagen-promo" alt="Promoción 2">
+                    <img src="{{ asset('imagenes/promo2.png') }}" class="d-block w-100 imagen-promo-nueva" alt="Promo 2">
                 </div>
+
 
             </div>
 
-            <button class="carousel-control-prev" type="button"
-                    data-bs-target="#carruselPromos" data-bs-slide="prev">
+            {{-- Flechas --}}
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromociones" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </button>
-            <button class="carousel-control-next" type="button"
-                    data-bs-target="#carruselPromos" data-bs-slide="next">
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselPromociones" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </button>
 
         </div>
+
     </div>
 </section>
 
