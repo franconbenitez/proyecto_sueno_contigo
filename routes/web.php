@@ -70,4 +70,7 @@ Route::post('/registro', function () {
 Route::get('/carrito', [CarritoController::class, 'index']);
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar']);
+Route::get('/carrito/eliminar/{key}', [CarritoController::class, 'eliminar']);
+Route::get('/carrito/sumar/{key}', [CarritoController::class, 'sumar']);
+Route::get('/carrito/restar/{key}', [CarritoController::class, 'restar']);
 

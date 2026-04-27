@@ -1127,3 +1127,25 @@ p, a, li, input, button {
 .carousel-inner{border-radius:15px;overflow:hidden;background:#f3e5f5}
 #carouselPromociones 
 .imagen-promo-nueva{width:100%;height:auto;aspect-ratio:3/1;object-fit:cover}
+
+/* Color uniforme para todo el menú mobile */
+#menuLateral .nav-link {
+    color: white !important; /* O el color exacto que uses en "Inicio" */
+}
+
+/* Estilo base de la flechita */
+.flechita-catalogo {
+    transition: transform 0.3s ease;
+}
+
+/* Rotación cuando el menú está abierto */
+[aria-expanded="true"] .flechita-catalogo {
+    transform: rotate(180deg);
+}
+
+/* Efecto visual para las subcategorías */
+#collapseCatalogo .nav-link {
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+

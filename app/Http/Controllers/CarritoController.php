@@ -56,4 +56,30 @@ class CarritoController extends Controller
         }
         return redirect()->back();
     }
+
+    // Sumar cantidad
+    public function sumar($key)
+    {
+        $carrito = session()->get('carrito', []);
+        if(isset($carrito[$key])) {
+            $carrito[$key]['cantidad']++;
+            session()->put('carrito', $carrito);
+        }
+        return redirect()->back();
+    }
+
+    // Restar cantidad
+    public function restar($key)
+    {
+        $carrito = session()->get('carrito', []);
+        if(isset($carrito[$key])) {
+            if($carrito[$key]['cantidad'] > 1) {
+                $carrito[$key]['cantidad']--;
+            } else {
+                unset($carrito[$key]); // Si es 1 y resta, se elimina
+            }
+            session()->put('carrito', $carrito);
+        }
+        return redirect()->back();
+}
 }

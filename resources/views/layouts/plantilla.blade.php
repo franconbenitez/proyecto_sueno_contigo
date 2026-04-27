@@ -161,9 +161,29 @@
                 <li class="nav-item">
                     <a class="nav-link-lateral" href="/">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link-lateral" href="/catalogo/productos">Catálogo</a>
-                </li>
+                {{-- Catálogo Colapsable en Mobile --}}
+                <div class="nav-item mb-2">
+                    <a class="nav-link d-flex justify-content-between align-items-center text-white" 
+                    data-bs-toggle="collapse" 
+                    href="#collapseCatalogo" 
+                    role="button" 
+                    aria-expanded="false" 
+                    aria-controls="collapseCatalogo"
+                    id="btnCatalogoMobile">
+                        Catálogo
+                        <i class="bi bi-chevron-down flechita-catalogo"></i>
+                    </a>
+                    
+                    <div class="collapse" id="collapseCatalogo">
+                        <ul class="list-unstyled ps-4 mt-2">
+                            <li class="mb-2"><a class="nav-link py-1 text-white opacity-75" href="/catalogo/productos">Ver todo</a></li>
+                            <li class="mb-2"><a class="nav-link py-1 text-white opacity-75" href="/catalogo/pijamas">Pijamas</a></li>
+                            <li class="mb-2"><a class="nav-link py-1 text-white opacity-75" href="/catalogo/lenceria">Lencería</a></li>
+                            <li class="mb-2"><a class="nav-link py-1 text-white opacity-75" href="/catalogo/pantuflas">Pantuflas</a></li>
+                            <li class="mb-2"><a class="nav-link py-1 text-white opacity-75" href="/catalogo/batas">Batas</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link-lateral" href="/quienes-somos">Quiénes somos</a>
                 </li>
