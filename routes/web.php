@@ -56,7 +56,18 @@ Route::get('/login', [LoginController::class, 'index']);
 // Registro
 Route::get('/registro', [RegistroController::class, 'index']);
 
+// Login (temporal)
+Route::post('/login', function () {
+    return back()->with('mensajeAuth', 'El inicio de sesión estará disponible en la próxima etapa del proyecto.');
+});
+
+// Registro (temporal)
+Route::post('/registro', function () {
+    return back()->with('mensajeAuth', 'La creación de cuentas estará disponible en la próxima etapa del proyecto.');
+});
+
 // CARRITO
 Route::get('/carrito', [CarritoController::class, 'index']);
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar']);
+

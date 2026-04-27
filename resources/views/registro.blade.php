@@ -15,6 +15,12 @@
                         <p class="auth-subtitulo">Sumate a la familia Sueño Contigo</p>
                     </div>
 
+                    @if(session('mensajeAuth'))
+                        <div class="alert alert-info text-center rounded-4 mb-4">
+                            {{ session('mensajeAuth') }}
+                        </div>
+                    @endif
+
                     {{-- Formulario --}}
                     <form action="{{ url('/registro') }}" method="POST">
                         @csrf

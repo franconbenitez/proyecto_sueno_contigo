@@ -129,8 +129,14 @@
         </a>
 
         {{-- Solo carrito a la derecha --}}
-        <a class="btn-icono-nav" href="#">
+        <a class="btn-icono-nav position-relative" href="/carrito">
             <i class="bi bi-bag-heart"></i>
+
+            @if(session('carrito') && count(session('carrito')) > 0)
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.55rem;">
+                    {{ count(session('carrito')) }}
+                </span>
+            @endif
         </a>
 
     </nav>

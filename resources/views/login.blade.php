@@ -6,6 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-7 col-lg-5">
 
+
                 <div class="card-auth">
 
                     {{-- Encabezado --}}
@@ -14,6 +15,12 @@
                         <h1 class="auth-titulo">Bienvenida</h1>
                         <p class="auth-subtitulo">Iniciá sesión en tu cuenta</p>
                     </div>
+
+                    @if(session('mensajeAuth'))
+                        <div class="alert alert-info text-center rounded-4 mb-4">
+                            {{ session('mensajeAuth') }}
+                        </div>
+                    @endif
 
                     {{-- Formulario --}}
                     <form action="{{ url('/login') }}" method="POST">
