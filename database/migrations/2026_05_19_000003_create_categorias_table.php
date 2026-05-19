@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perfiles', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 50);
-            $table->boolean('activo')->default(true);
+            $table->string('nombre', 100);
+            $table->boolean('activa')->default(true);
             $table->timestamps();
         });
-    }
+}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('perfiles');
+        Schema::dropIfExists('categorias');
     }
 };

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre', 100);
-            $table->boolean('activa')->default(true);
+        Schema::create('perfiles', function (Blueprint $table) {
+            $table->id(); // Este es el id que se usa para relacionar
+            $table->string('nombre_perfil', 50); // 'Admin' o 'Cliente'
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('perfiles');
     }
 };

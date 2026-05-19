@@ -14,14 +14,12 @@ class PerfilSeeder extends Seeder
     {
         DB::table('perfiles')->insert([
             [
-                'nombre' => 'Administrador',
-                'activo' => true,
+                'nombre_perfil' => 'Administrador', // <-- Ajustado acá
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'nombre' => 'Cliente',
-                'activo' => true,
+                'nombre_perfil' => 'Cliente',       // <-- Ajustado acá
                 'created_at' => now(),
                 'updated_at' => now()
             ]
