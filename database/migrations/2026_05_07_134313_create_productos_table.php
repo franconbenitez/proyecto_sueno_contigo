@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('productos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre', 150); [cite: 62]
-            $table->text('descripcion')->nullable(); [cite: 63]
-            $table->decimal('precio', 10, 2); [cite: 64]
-            $table->integer('stock')->default(0); [cite: 65]
-            $table->string('url_imagen')->nullable(); [cite: 66]
-            $table->boolean('activo')->default(true); [cite: 67]
-            $table->timestamps();
+            $table->id(); // ID automático 
+            $table->string('nombre', 150); // Campo nombre 
+            $table->text('descripcion')->nullable(); // Campo descripción 
+            $table->decimal('precio', 10, 2); // Campo precio 
+            $table->integer('stock')->default(0); // Campo stock 
+            $table->string('url_imagen')->nullable(); // Campo URL imagen 
+            // Relación categoría (primero tabla categoría )
+            $table->foreignId('categoria_id')->constrained('categorias'); 
+            $table->boolean('activo')->default(true); // Campo activo 
+            $table->timestamps(); // Created_at y updated_at 
         });
     }
 
