@@ -23,8 +23,8 @@
                     @endif
 
                     {{-- Formulario --}}
-                    <form action="{{ url('/login') }}" method="POST">
-                        @csrf
+                    <form method="POST" action="/login">
+                    @csrf
 
                         {{-- Email --}}
                         <div class="auth-campo mb-3">
@@ -37,6 +37,9 @@
                                 placeholder="tu@email.com"
                                 required>
                         </div>
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
 
                         {{-- Contraseña --}}
                         <div class="auth-campo mb-2">

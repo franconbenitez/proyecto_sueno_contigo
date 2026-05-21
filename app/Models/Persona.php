@@ -29,11 +29,4 @@ class Persona extends Authenticatable
         'remember_token',
     ];
 
-    // Esto asegura que la contraseña siempre se guarde encriptada
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
-    }
 }

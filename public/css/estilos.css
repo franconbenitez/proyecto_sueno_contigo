@@ -1148,3 +1148,40 @@ p, a, li, input, button {
     font-size: 0.95rem;
     font-weight: 300;
 }
+
+/* =========================================
+   USUARIO LOGUEADO NAVBAR
+========================================= */
+
+.usuario-logueado {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nombre-usuario-navbar {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+.usuario-mobile-logueado {
+    color: white;
+}
+
+.btn-cerrar-mobile {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 14px;
+    transition: 0.2s ease;
+}
+
+.btn-cerrar-mobile:hover {
+    background: rgba(255,255,255,0.1);
+}

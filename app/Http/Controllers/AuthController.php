@@ -14,13 +14,13 @@ class AuthController extends Controller
     // Muestra la vista de Registro
     public function formularioRegistro()
     {
-        return view('backend.usuarios.registro'); // Según la estructura de tu compañera
+        return view('registro');
     }
 
     // Muestra la vista de Login
     public function formularioLogin()
     {
-        return view('backend.usuarios.login');
+        return view('login');
     }
 
     // Procesa el REGISTRO REAL
@@ -38,5 +38,42 @@ class AuthController extends Controller
 
         // Redirige al login con un mensaje de éxito
         return redirect('/login')->with('success', '¡Te registraste correctamente! Ya podés iniciar sesión.');
+    }
+
+    public function login(Request $request)
+    {
+        $credenciales = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Busca la persona por email
+        $persona = Persona::where('email', $request->email)->first();
+
+        // Verifica contraseña y usuario existente
+        if ($persona && Hash::check($request->password, $persona->password)) {
+
+            // Inicia sesión
+            Auth::login($persona);
+
+            // Regenera sesión por seguridad
+            $request->session()->regenerate();
+
+            return redirect('/')->with('success', '¡Bienvenido!');
+        }
+
+        return back()->withErrors([
+            'email' => 'Credenciales incorrectas.',
+        ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

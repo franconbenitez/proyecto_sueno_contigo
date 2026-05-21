@@ -22,20 +22,38 @@
                     @endif
 
                     {{-- Formulario --}}
-                    <form action="{{ url('/registro') }}" method="POST">
-                        @csrf
+                    <form method="POST" action="/registro">
+                    @csrf
 
-                        {{-- Nombre completo --}}
+                        {{-- Nombre --}}
                         <div class="auth-campo mb-3">
-                            <label for="nombre" class="auth-label">Nombre completo</label>
+                            <label for="nombre" class="auth-label">Nombre</label>
                             <input
                                 type="text"
                                 id="nombre"
                                 name="nombre"
                                 class="auth-input"
-                                placeholder="Tu nombre y apellido"
+                                placeholder="Tu nombre"
                                 required>
                         </div>
+                        @error('nombre')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+
+                        {{-- Apellido --}}
+                        <div class="auth-campo mb-3">
+                            <label for="apellido" class="auth-label">Apellido</label>
+                            <input
+                                type="text"
+                                id="apellido"
+                                name="apellido"
+                                class="auth-input"
+                                placeholder="Tu apellido"
+                                required>
+                        </div>
+                        @error('apellido')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
 
                         {{-- Email --}}
                         <div class="auth-campo mb-3">
@@ -48,6 +66,9 @@
                                 placeholder="tu@email.com"
                                 required>
                         </div>
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
 
                         {{-- Contraseña --}}
                         <div class="auth-campo mb-3">
@@ -68,6 +89,9 @@
                                 </button>
                             </div>
                         </div>
+                        @error('password')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
 
                         {{-- Repetir contraseña --}}
                         <div class="auth-campo mb-4">

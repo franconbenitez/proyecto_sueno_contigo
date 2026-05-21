@@ -85,11 +85,53 @@
                 </li>
 
                 {{-- Login --}}
+                @auth
+
+                <li class="nav-item dropdown">
+                    <a class="btn-icono-nav dropdown-toggle usuario-logueado"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+
+                        <i class="bi bi-person-circle"></i>
+
+                        <span class="nombre-usuario-navbar">
+                            {{ Auth::user()->nombre }}
+                        </span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                        
+                        <li>
+                            <span class="dropdown-item-text text-muted small">
+                                {{ Auth::user()->email }}
+                            </span>
+                        </li>
+
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    Cerrar sesión
+                                </button>
+                            </form>
+                        </li>
+
+                    </ul>
+                </li>
+
+                @else
+
                 <li class="nav-item">
                     <a class="btn-icono-nav" href="/login">
                         <i class="bi bi-person-circle"></i>
                     </a>
                 </li>
+
+                @endauth
 
                 {{-- Carrito --}}
                 <li class="nav-item">
@@ -216,9 +258,32 @@
             {{-- Espaciador que empuja el login hacia abajo --}}
             <div class="mt-auto">
                 <hr class="border-white opacity-25">
+                @auth
+
+                <div class="usuario-mobile-logueado">
+
+                    <div class="mb-3 text-white">
+                        <i class="bi bi-person-circle me-2"></i>
+                        {{ Auth::user()->nombre }}
+                    </div>
+
+                    <form action="/logout" method="POST">
+                        @csrf
+
+                        <button type="submit" class="btn-cerrar-mobile">
+                            Cerrar sesión
+                        </button>
+                    </form>
+
+                </div>
+
+                @else
+
                 <a class="nav-link-lateral-login" href="/login">
                     <i class="bi bi-person-circle me-2"></i> Mi cuenta
                 </a>
+
+                @endauth
             </div>
 
         </div>

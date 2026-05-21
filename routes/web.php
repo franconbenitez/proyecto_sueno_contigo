@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\InformacionController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,21 +51,16 @@ Route::post('/contacto', [ContactoController::class, 'procesar']);
 
 
 // --- AUTENTICACIÓN ---
-// Login
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [AuthController::class, 'formularioLogin']);
 
-// Registro
-Route::get('/registro', [RegistroController::class, 'index']);
+Route::get('/registro', [AuthController::class, 'formularioRegistro']);
 
-// Login (temporal)
-Route::post('/login', function () {
-    return back()->with('mensajeAuth', 'El inicio de sesión estará disponible en la próxima etapa del proyecto.');
-});
+Route::post('/registro', [AuthController::class, 'registrar']);
 
-// Registro (temporal)
-Route::post('/registro', function () {
-    return back()->with('mensajeAuth', 'La creación de cuentas estará disponible en la próxima etapa del proyecto.');
-});
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/logout', [AuthController::class, 'logout']);
+
 
 // CARRITO
 Route::get('/carrito', [CarritoController::class, 'index']);
