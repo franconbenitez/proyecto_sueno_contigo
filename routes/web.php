@@ -12,6 +12,8 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\InformacionController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +72,15 @@ Route::get('/carrito/eliminar/{key}', [CarritoController::class, 'eliminar']);
 Route::get('/carrito/sumar/{key}', [CarritoController::class, 'sumar']);
 Route::get('/carrito/restar/{key}', [CarritoController::class, 'restar']);
 
+// admin
+Route::get('/admin', [AdminController::class, 'dashboard'])
+    ->middleware('admin');
+
+//PRODUCTO
+Route::resource('productos', ProductoController::class)
+    ->middleware('admin');
+Route::put(
+    '/productos/{id}/restore',
+    [ProductoController::class, 'restore']
+)->name('productos.restore')
+ ->middleware('admin');

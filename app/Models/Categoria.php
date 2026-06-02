@@ -13,4 +13,9 @@ class Categoria extends Model
     protected $casts = [
         'activa' => 'boolean',
     ];
+
+    public function productos()
+    {
+        return $this->hasMany(Producto::class);
+    }
 }

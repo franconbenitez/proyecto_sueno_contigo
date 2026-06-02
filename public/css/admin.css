@@ -1,0 +1,147 @@
+/* =====================================
+   NAVBAR ADMIN
+===================================== */
+
+#navbar-admin,
+#navbar-admin-mobile {
+    background-color: var(--color-rosa-claro);
+}
+
+.admin-usuario {
+    color: rgba(255,255,255,.85);
+    font-size: .95rem;
+    font-family: 'Lato', sans-serif;
+}
+
+.btn-admin-tienda {
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgba(255,255,255,.5);
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: .3s;
+}
+
+.btn-admin-tienda:hover {
+    background-color: white;
+    color: var(--color-principal);
+}
+
+#menuAdmin {
+    background-color: var(--color-principal);
+}
+
+#menuAdmin .offcanvas-header {
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+/* =====================================
+   DASHBOARD
+===================================== */
+
+.card-admin {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.06);
+}
+
+.card-admin h3 {
+    margin-bottom: 0;
+}
+
+.card-admin-icono {
+    font-size: 2rem;
+    color: var(--color-principal);
+}
+
+/* =====================================
+   TABLAS
+===================================== */
+
+.tabla-admin {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,.06);
+}
+
+.tabla-admin table {
+    margin-bottom: 0;
+}
+
+.tabla-admin thead {
+    background-color: #faf7fc;
+}
+
+.tabla-admin th {
+    font-weight: 600;
+}
+
+/* =====================================
+   BOTONES CRUD
+===================================== */
+
+.btn-admin-primary {
+    background-color: var(--color-principal);
+    border: none;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 20px;
+}
+
+.btn-admin-primary:hover {
+    opacity: .9;
+}
+
+.btn-admin-edit {
+    border-radius: 20px;
+}
+
+.btn-admin-delete {
+    border-radius: 20px;
+}
+
+/* ==========================
+   DASHBOARD
+========================== */
+
+.admin-titulo{
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--color-principal);
+    margin-bottom: 2rem;
+}
+
+.card-dashboard{
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    height: 100%;
+}
+
+.card-dashboard h6{
+    color: #777;
+    font-size: .9rem;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.card-dashboard h2{
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.numero-activo{
+    color: #198754;
+}
+
+.numero-eliminado{
+    color: #dc3545;
+}
+
+.numero-usuarios{
+    color: var(--color-principal);
+}

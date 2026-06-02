@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('categoria_id')->constrained('categorias'); 
             $table->boolean('activo')->default(true); // Campo activo 
             $table->timestamps(); // Created_at y updated_at 
+            $table->softDeletes();
         });
     }
 

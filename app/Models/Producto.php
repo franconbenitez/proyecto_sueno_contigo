@@ -3,16 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
     'nombre',
     'descripcion',
     'precio',
     'stock',
     'url_imagen',
+    'categoria_id',
     'activo'
+
 ];
 
 protected $casts = [
@@ -20,4 +25,9 @@ protected $casts = [
     'stock' => 'integer',
     'activo' => 'boolean'
 ];
+
+public function categoria()
+{
+    return $this->belongsTo(Categoria::class);
+}
 }

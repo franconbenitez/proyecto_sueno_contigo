@@ -56,8 +56,11 @@ class AuthController extends Controller
             // Inicia sesión
             Auth::login($persona);
 
-            // Regenera sesión por seguridad
             $request->session()->regenerate();
+
+            if ($persona->perfil_id == 1) {
+                return redirect('/admin');
+            }
 
             return redirect('/')->with('success', '¡Bienvenido!');
         }
