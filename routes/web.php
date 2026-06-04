@@ -16,6 +16,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,3 +100,6 @@ Route::post('/usuarios', [UsuarioController::class, 'store'])
 Route::get('/consultas', [ConsultaController::class, 'index'])
     ->middleware('admin')
     ->name('consultas.index');
+    Route::get('/pedidos', [PedidoController::class, 'index'])
+    ->middleware('admin')
+    ->name('pedidos.index');

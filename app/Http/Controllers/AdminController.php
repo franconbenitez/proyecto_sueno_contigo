@@ -11,12 +11,12 @@ class AdminController extends Controller
     {
         $totalProductos = Producto::count();
 
-        $productosActivos = Producto::where('activo', true)
-        ->whereNull('deleted_at')
-        ->count();
+        $productosActivos = Producto::where('activo', true)->count();
+        
+        
 
         $productosEliminados = Producto::onlyTrashed()->count();
-
+        
         $usuariosRegistrados = Persona::count();
 
         return view(

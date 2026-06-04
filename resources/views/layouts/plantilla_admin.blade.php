@@ -66,10 +66,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Pedidos
-                    </a>
-                </li>
+                <a class="nav-link nav-link-admin {{ Request::is('pedidos*') ? 'active' : '' }}" href="{{ url('/pedidos') }}">
+                    Pedidos
+                </a>
+            </li>
 
             </ul>
 
