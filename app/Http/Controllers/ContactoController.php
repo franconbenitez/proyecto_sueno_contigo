@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Consulta;
 
 class ContactoController extends Controller
 {
@@ -22,6 +23,14 @@ class ContactoController extends Controller
         $pedido   = $request->input('pedido'); // El campo opcional
         $tipo     = $request->input('tipo_consulta');
         $mensaje  = $request->input('mensaje');
+
+        Consulta::create([
+            'nombre' => $nombre,
+            'email' => $email,
+            'pedido' => $pedido,
+            'tipo_consulta' => $tipo,
+            'mensaje' => $mensaje,
+        ]);
 
         // Retornamos la vista de éxito pasando los datos
         return view('exito', [

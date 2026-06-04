@@ -54,13 +54,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('usuarios.index') }}">
                         Usuarios
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('consultas.index') }}">
                         Consultas
                     </a>
                 </li>
@@ -154,13 +154,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link-lateral" href="#">
+                    <a class="nav-link-lateral" href="{{ route('usuarios.index') }}">
                         Usuarios
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link-lateral" href="#">
+                    <a class="nav-link-lateral" href="{{ route('consultas.index') }}">
                         Consultas
                     </a>
                 </li>

@@ -14,6 +14,8 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ConsultaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +86,16 @@ Route::put(
     [ProductoController::class, 'restore']
 )->name('productos.restore')
  ->middleware('admin');
+ Route::get('/usuarios', [UsuarioController::class, 'index'])
+    ->middleware('admin')
+    ->name('usuarios.index');
+Route::get('/usuarios/crear', [UsuarioController::class, 'create'])
+    ->middleware('admin')
+    ->name('usuarios.create');
+
+Route::post('/usuarios', [UsuarioController::class, 'store'])
+    ->middleware('admin')
+    ->name('usuarios.store');
+Route::get('/consultas', [ConsultaController::class, 'index'])
+    ->middleware('admin')
+    ->name('consultas.index');
