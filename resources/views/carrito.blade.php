@@ -4,6 +4,14 @@
 <div class="container mt-5 pt-5">
     <h2 class="color-primario mb-4" style="font-family: 'Cormorant Garamond', serif;">Tu Carrito 💖</h2>
 
+    {{-- ALERTAS DE ÉXITO O ERROR --}}
+    @if(session('success'))
+        <div class="alert alert-success shadow-sm rounded-4">{{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger shadow-sm rounded-4">{{ session('error') }}</div>
+    @endif
+
     @if(session('carrito') && count(session('carrito')) > 0)
         <div class="table-responsive shadow-sm rounded-4 p-3 bg-white">
             <table class="table align-middle">
@@ -69,8 +77,24 @@
         
         <div class="text-end mt-4">
             <h3 class="mb-4">Total: ${{ number_format($total, 0, ',', '.') }}</h3>
-            <a href="/carrito/vaciar" class="btn btn-outline-secondary rounded-pill px-4 me-2">Vaciar Carrito</a>
-            <button class="btn btn-lg text-white px-5" style="background-color: #5d4d7a; border-radius: 25px;">Finalizar Compra</button>
+            
+            <div class="d-flex justify-content-end align-items-center gap-2">
+                <a href="/carrito/vaciar" class="btn btn-outline-secondary rounded-pill px-4">Vaciar Carrito</a>
+                
+                {{-- Validamos si el usuario está logueado para mostrar el formulario real --}}
+                @auth
+                    <form action="/carrito/comprar" method="POST" class="m-0">
+                        @csrf
+                        <button type="submit" class="btn btn-lg text-white px-5" style="background-color: #5d4d7a; border-radius: 25px;">
+                            Finalizar Compra
+                        </button>
+                    </form>
+                @else
+                    <a href="/login" class="btn btn-lg text-white px-5" style="background-color: #5d4d7a; border-radius: 25px;">
+                        Iniciá sesión para comprar
+                    </a>
+                @endauth
+            </div>
         </div>
     @else
         <div class="text-center py-5">

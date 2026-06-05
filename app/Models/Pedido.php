@@ -20,4 +20,10 @@ class Pedido extends Model
     {
         return $this->belongsTo(Persona::class, 'persona_id');
     }
+
+    // Relación: Un pedido tiene muchos detalles
+    public function detalles()
+    {
+        return $this->hasMany(DetallePedido::class, 'pedido_id');
+    }
 }

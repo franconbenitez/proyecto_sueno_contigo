@@ -6,23 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::table('productos', function (Blueprint $table) {
-            $table->softDeletes();
-        });
+        // Verifica si la columna NO existe antes de intentar crearla
+        if (!Schema::hasColumn('productos', 'deleted_at')) {
+            Schema::table('productos', function (Blueprint $table) {
+                $table->softDeletes();
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::table('productos', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        if (Schema::hasColumn('productos', 'deleted_at')) {
+            Schema::table('productos', function (Blueprint $table) {
+                $table->dropSoftDeletes();
+            });
+        }
     }
 };

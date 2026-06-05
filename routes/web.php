@@ -75,6 +75,9 @@ Route::get('/carrito/eliminar/{key}', [CarritoController::class, 'eliminar']);
 Route::get('/carrito/sumar/{key}', [CarritoController::class, 'sumar']);
 Route::get('/carrito/restar/{key}', [CarritoController::class, 'restar']);
 
+// Solo usuarios logueados pueden finalizar la compra
+Route::post('/carrito/comprar', [CarritoController::class, 'comprar'])->middleware('auth');
+
 // admin
 Route::get('/admin', [AdminController::class, 'dashboard'])
     ->middleware('admin');

@@ -39,7 +39,10 @@
                             @endif
                         </td>
                         <td class="text-end">
-                            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-box-seam me-1"></i> Detalle</button>
+                            {{-- Este botón ahora activa el modal correspondiente usando el ID del pedido --}}
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalDetalle{{ $pedido->id }}">
+                                <i class="bi bi-box-seam me-1"></i> Detalle
+                            </button>
                         </td>
                     </tr>
                 @empty
@@ -54,5 +57,81 @@
         </table>
     </div>
 </div>
+
+{{-- ZONA DE MODALES (Ventanas emergentes) --}}
+@foreach($pedidos as $pedido)
+<div class="modal fade" id="modalDetalle{{ $pedido->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $pedido->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header text-white" style="background-color: #5d4d7a;">
+                <h5 class="modal-title" id="modalLabel{{ $pedido->id }}">
+                    <i class="bi bi-receipt me-2"></i> Orden: {{ $pedido->numero_pedido }}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body p-4">
+                
+                {{-- Datos del cliente --}}
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <p class="mb-1 text-muted small">Cliente</p>
+                        <p class="fw-bold mb-0">{{ $pedido->persona->nombre ?? 'N/A' }} {{ $pedido->persona->apellido ?? '' }}</p>
+                        <p class="text-muted small">{{ $pedido->persona->email ?? 'N/A' }}</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="mb-1 text-muted small">Fecha de compra</p>
+                        <p class="fw-bold">{{ $pedido->created_at->format('d/m/Y H:i') }}</p>
+                    </div>
+                </div>
+
+                {{-- Tabla de productos comprados --}}
+                <div class="table-responsive rounded-3 border">
+                    <table class="table table-sm table-borderless mb-0 align-middle">
+                        <thead class="table-light text-muted small">
+                            <tr>
+                                <th class="ps-3 py-2">Producto</th>
+                                <th>Talle</th>
+                                <th class="text-center">Cant.</th>
+                                <th class="text-end pe-3">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($pedido->detalles as $detalle)
+                            <tr class="border-top">
+                                <td class="ps-3 py-2">
+                                    <div class="d-flex align-items-center">
+                                        {{-- Verificamos si el producto aún existe o fue borrado --}}
+                                        @if($detalle->producto)
+                                            <img src="{{ asset('imagenes/' . $detalle->producto->url_imagen) }}" width="40" height="40" class="rounded object-fit-cover me-2">
+                                            <span class="fw-bold text-dark">{{ $detalle->producto->nombre }}</span>
+                                        @else
+                                            <span class="text-muted fst-italic">Producto Eliminado</span>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-secondary">{{ $detalle->talle }}</span></td>
+                                <td class="text-center fw-bold">{{ $detalle->cantidad }}</td>
+                                <td class="text-end pe-3 fw-bold">${{ number_format($detalle->precio_unitario * $detalle->cantidad, 2, ',', '.') }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot class="border-top table-light">
+                            <tr>
+                                <td colspan="3" class="text-end fw-bold py-3">TOTAL:</td>
+                                <td class="text-end fw-bold text-primary pe-3 fs-5">${{ number_format($pedido->total, 2, ',', '.') }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer bg-light d-flex justify-content-between">
+                <span class="text-muted small">Estado actual: <strong>{{ $pedido->estado }}</strong></span>
+                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 @endsection
