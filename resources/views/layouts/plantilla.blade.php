@@ -41,7 +41,6 @@
                         Catálogo
                     </a>
                     <ul class="dropdown-menu border-0 shadow-sm">
-                        {{-- NUEVA OPCIÓN --}}
                         <li><a class="dropdown-item fw-bold" href="/catalogo/productos">Ver todo</a></li>
                         <li><hr class="dropdown-divider"></li>
                         
@@ -111,11 +110,20 @@
 
                         <li><hr class="dropdown-divider"></li>
 
+                        {{-- ENLACE AL PANEL DE ADMINISTRACIÓN --}}
+                        <li>
+                            <a class="dropdown-item fw-bold" href="/admin" style="color: #5d4d7a;">
+                                <i class="bi bi-gear me-2"></i> Ir al Panel Admin
+                            </a>
+                        </li>
+                        
+                        <li><hr class="dropdown-divider"></li>
+
                         <li>
                             <form action="/logout" method="POST">
                                 @csrf
-                                <button type="submit" class="dropdown-item">
-                                    Cerrar sesión
+                                <button type="submit" class="dropdown-item text-danger">
+                                    <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
                                 </button>
                             </form>
                         </li>
@@ -267,11 +275,17 @@
                         {{ Auth::user()->nombre }}
                     </div>
 
+                    {{-- ENLACE AL PANEL DE ADMINISTRACIÓN MOBILE --}}
+                    <div class="mb-3">
+                        <a href="/admin" class="btn-cerrar-mobile d-block text-start text-decoration-none" style="background: transparent; border: none;">
+                            <i class="bi bi-gear me-2"></i> Ir al Panel Admin
+                        </a>
+                    </div>
+
                     <form action="/logout" method="POST">
                         @csrf
-
-                        <button type="submit" class="btn-cerrar-mobile">
-                            Cerrar sesión
+                        <button type="submit" class="btn-cerrar-mobile text-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
                         </button>
                     </form>
 

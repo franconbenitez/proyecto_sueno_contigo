@@ -22,7 +22,7 @@
     {{-- CSS admin --}}
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     {{-- ==========================================
          NAVBAR ADMIN DESKTOP
@@ -73,22 +73,32 @@
 
             </ul>
 
-            {{-- Usuario --}}
+            {{-- Usuario y Botones --}}
             <ul class="navbar-nav ms-auto align-items-center">
 
                 @auth
                     <li class="nav-item me-3">
-                        <span class="admin-usuario">
+                        <span class="admin-usuario text-white">
                             <i class="bi bi-person-circle"></i>
                             {{ Auth::user()->nombre }}
                         </span>
                     </li>
                 @endauth
 
-                <li class="nav-item">
+                {{-- Contenedor para los dos botones --}}
+                <li class="nav-item d-flex align-items-center gap-2">
                     <a href="/" class="btn-admin-tienda">
                         Ver tienda
                     </a>
+                    
+                    @auth
+                    <form action="/logout" method="POST" class="m-0">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-light rounded-pill px-3" style="border-width: 1.5px;" title="Cerrar Sesión">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </button>
+                    </form>
+                    @endauth
                 </li>
 
             </ul>
@@ -101,11 +111,11 @@
          NAVBAR MOBILE
          ========================================== --}}
     <nav class="navbar navbar-dark d-flex d-lg-none justify-content-between align-items-center px-3"
-         id="navbar-admin-mobile">
+         id="navbar-mobile">
 
         <button class="btn-icono-nav"
                 data-bs-toggle="offcanvas"
-                data-bs-target="#menuAdmin">
+                data-bs-target="#menuLateral"> {{-- AQUÍ SE CORRIGIÓ EL ID OBJETIVO --}}
             <i class="bi bi-list fs-4"></i>
         </button>
 
@@ -122,9 +132,10 @@
     </nav>
 
     {{-- ==========================================
-         MENÚ MOBILE
+         MENÚ MOBILE (Offcanvas)
          ========================================== --}}
-    <div class="offcanvas offcanvas-start" id="menuAdmin">
+    {{-- AQUÍ SE CORRIGIÓ EL ID PARA TOMAR TUS ESTILOS LILAS --}}
+    <div class="offcanvas offcanvas-start" id="menuLateral">
 
         <div class="offcanvas-header">
             <h5 class="offcanvas-title text-white">
@@ -137,9 +148,9 @@
             </button>
         </div>
 
-        <div class="offcanvas-body">
+        <div class="offcanvas-body d-flex flex-column">
 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav flex-column gap-1 mb-3">
 
                 <li class="nav-item">
                     <a class="nav-link-lateral" href="/admin">
@@ -148,7 +159,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link-lateral" href="#">
+                    <a class="nav-link-lateral" href="{{ route('productos.index') }}">
                         Productos
                     </a>
                 </li>
@@ -166,21 +177,32 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link-lateral" href="#">
+                    <a class="nav-link-lateral" href="{{ url('/pedidos') }}">
                         Pedidos
                     </a>
                 </li>
 
             </ul>
 
+            {{-- Botones Inferiores Mobile --}}
             <div class="mt-auto pt-4">
 
                 <hr class="border-white opacity-25">
 
-                <a href="/" class="nav-link-lateral-login">
+                <a href="/" class="nav-link-lateral-login d-block mb-3">
                     <i class="bi bi-shop me-2"></i>
                     Ver tienda
                 </a>
+
+                @auth
+                <form action="/logout" method="POST" class="m-0">
+                    @csrf
+                    <button type="submit" class="nav-link-lateral-login w-100 text-start bg-transparent border-0 d-block text-danger">
+                        <i class="bi bi-box-arrow-right me-2"></i>
+                        Cerrar sesión
+                    </button>
+                </form>
+                @endauth
 
             </div>
 
@@ -189,7 +211,7 @@
     </div>
 
     {{-- CONTENIDO --}}
-    <main class="container py-5">
+    <main class="container py-5 flex-grow-1">
         @yield('contenido_admin')
     </main>
 

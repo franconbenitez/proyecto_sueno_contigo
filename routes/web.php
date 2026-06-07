@@ -106,3 +106,4 @@ Route::get('/consultas', [ConsultaController::class, 'index'])
     Route::get('/pedidos', [PedidoController::class, 'index'])
     ->middleware('admin')
     ->name('pedidos.index');
+    Route::put('/pedidos/{id}/estado', [PedidoController::class, 'actualizarEstado'])->middleware('admin');

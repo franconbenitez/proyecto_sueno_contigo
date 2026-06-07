@@ -9,6 +9,13 @@
     </div>
 </div>
 
+{{-- Mostrar mensaje de éxito si se actualizó el estado --}}
+@if(session('success'))
+    <div class="alert alert-success shadow-sm rounded-3">
+        <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
+    </div>
+@endif
+
 <div class="card-legal p-4 shadow-sm border-0">
     <div class="table-responsive">
         <table class="table table-hover align-middle">
@@ -26,7 +33,7 @@
                 @forelse($pedidos as $pedido)
                     <tr>
                         <td class="fw-bold color-primario">{{ $pedido->numero_pedido }}</td>
-                        <td class="texto-legal">{{ $pedido->created_at->format('d/m/Y') }}</td>
+                        <td class="texto-legal">{{ $pedido->created_at->format('d/m/Y H:i') }}</td>
                         <td>{{ $pedido->persona->nombre ?? 'Usuario Eliminado' }}</td>
                         <td class="fw-bold">${{ number_format($pedido->total, 2, ',', '.') }}</td>
                         <td>
@@ -34,12 +41,14 @@
                                 <span class="badge" style="background-color: var(--color-rosa-claro);">{{ $pedido->estado }}</span>
                             @elseif($pedido->estado == 'Entregado')
                                 <span class="badge bg-success">{{ $pedido->estado }}</span>
+                            @elseif($pedido->estado == 'Enviado')
+                                <span class="badge bg-info text-dark">{{ $pedido->estado }}</span>
                             @else
                                 <span class="badge bg-secondary">{{ $pedido->estado }}</span>
                             @endif
                         </td>
                         <td class="text-end">
-                            {{-- Este botón ahora activa el modal correspondiente usando el ID del pedido --}}
+                            {{-- Botón que activa el modal correspondiente usando el ID del pedido --}}
                             <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalDetalle{{ $pedido->id }}">
                                 <i class="bi bi-box-seam me-1"></i> Detalle
                             </button>
@@ -125,8 +134,24 @@
                 </div>
 
             </div>
-            <div class="modal-footer bg-light d-flex justify-content-between">
-                <span class="text-muted small">Estado actual: <strong>{{ $pedido->estado }}</strong></span>
+            <div class="modal-footer bg-light d-flex justify-content-between align-items-center">
+                
+                {{-- Formulario para cambiar estado --}}
+                <form action="/pedidos/{{ $pedido->id }}/estado" method="POST" class="d-flex align-items-center gap-2 m-0">
+                    @csrf
+                    @method('PUT')
+                    <label for="estado" class="text-muted small mb-0 text-nowrap fw-bold">Estado:</label>
+                    <select name="estado" class="form-select form-select-sm shadow-sm" style="width: auto; cursor: pointer;">
+                        <option value="Pendiente" {{ $pedido->estado == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+                        <option value="Enviado" {{ $pedido->estado == 'Enviado' ? 'selected' : '' }}>Enviado</option>
+                        <option value="Entregado" {{ $pedido->estado == 'Entregado' ? 'selected' : '' }}>Entregado</option>
+                        <option value="Cancelado" {{ $pedido->estado == 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
+                    </select>
+                    <button type="submit" class="btn btn-sm text-white px-3 rounded-pill" style="background-color: #5d4d7a;">
+                        Actualizar
+                    </button>
+                </form>
+
                 <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
