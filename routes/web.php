@@ -17,6 +17,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,18 @@ Route::post('/registro', [AuthController::class, 'registrar']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profile', [PerfilController::class, 'index'])
+        ->name('profile');
+
+    Route::post('/profile', [PerfilController::class, 'update'])
+        ->name('profile.update');
+
+    Route::get('/mis-pedidos', [PerfilController::class, 'pedidos'])
+        ->name('mis.pedidos');
+});
 
 
 // CARRITO

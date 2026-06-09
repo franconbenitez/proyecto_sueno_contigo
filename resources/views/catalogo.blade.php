@@ -8,38 +8,59 @@
     </h1>
 
     <div class="row g-4">
-        @foreach($productos as $item)
-        <div class="col-12 col-sm-6 col-lg-4">
-            {{-- El enlace envuelve a la card para que sea toda clickeable --}}
-            <a href="/producto/{{ $item['id'] }}" class="text-decoration-none h-100 d-block">
+
+    @forelse($productos as $item)
+
+    <div class="col-12 col-sm-6 col-lg-4">
+
+            <a href="/producto/{{ $item->id }}" class="text-decoration-none h-100 d-block">
+
                 <div class="card h-100 border-0 shadow-sm card-producto">
-                    
-                    {{-- Imagen del producto --}}
+
                     <div class="p-2">
-                        <img src="{{ asset('imagenes/' . $item['img']) }}" 
-                             class="card-img-top rounded-4" 
-                             alt="{{ $item['nombre'] }}"
-                             style="height: 300px; object-fit: cover;">
+
+                        <img src="{{ asset('storage/' . $item->url_imagen) }}"
+                            class="card-img-top rounded-4"
+                            alt="{{ $item->nombre }}"
+                            style="height: 300px; object-fit: cover;">
+
                     </div>
 
                     <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title color-primario fw-bold">{{ $item['nombre'] }}</h5>
-                        <p class="card-text text-muted small flex-grow-1">{{ $item['desc'] }}</p>
-                        
-                        {{-- Precio con formato de moneda --}}
-                        <p class="fw-bold fs-4 mt-2 mb-3" style="color: #5d4d7a;">
-                            ${{ number_format($item['precio'], 0, ',', '.') }}
+
+                        <h5 class="card-title color-primario fw-bold">
+                            {{ $item->nombre }}
+                        </h5>
+
+                        <p class="card-text text-muted small flex-grow-1">
+                            {{ $item->descripcion }}
                         </p>
 
-                        {{-- Botón visual (el link real es el que envuelve la card) --}}
-                        <div class="btn btn-volver-legal w-100" style="background-color: #5d4d7a; color: white; border: none; border-radius: 20px;">
+                        <p class="fw-bold fs-4 mt-2 mb-3" style="color: #5d4d7a;">
+                            ${{ number_format($item->precio, 0, ',', '.') }}
+                        </p>
+
+                        <div class="btn btn-volver-legal w-100"
+                            style="background-color: #5d4d7a; color: white; border: none; border-radius: 20px;">
                             Ver detalle / Comprar
                         </div>
+
                     </div>
+
                 </div>
+
             </a>
+
         </div>
-        @endforeach
+
+        @empty
+
+            <div class="col-12 text-center py-5">
+                <h4>No hay productos disponibles en esta categoría.</h4>
+            </div>
+
+        @endforelse
+
     </div>
 </div>
 

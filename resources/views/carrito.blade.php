@@ -18,7 +18,6 @@
                 <thead>
                     <tr class="text-muted text-center"> {{-- Centramos todo el encabezado --}}
                         <th class="text-start">Producto</th> {{-- Excepto el producto, que queda mejor a la izquierda --}}
-                        <th>Talle</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Subtotal</th>
@@ -31,10 +30,11 @@
                         @php $total += $item['precio'] * $item['cantidad'] @endphp
                         <tr class="text-center"> {{-- Centramos todas las celdas de la fila --}}
                             <td class="text-start"> {{-- El producto mantiene alineación izquierda --}}
-                                <img src="{{ asset('imagenes/' . $item['img']) }}" width="50" class="rounded me-2">
+                                <img src="{{ asset('storage/' . $item['img']) }}"
+                                width="50"
+                                class="rounded me-2">
                                 <span class="fw-bold">{{ $item['nombre'] }}</span>
                             </td>
-                            <td><span class="badge bg-light text-dark border">{{ $item['talle'] }}</span></td>
                             <td>${{ number_format($item['precio'], 0, ',', '.') }}</td>
                             
                             <td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Producto;
 
 class CatalogoController extends Controller
 {
@@ -39,19 +40,21 @@ class CatalogoController extends Controller
     // Muestra una categoría específica o todos los productos
     public function mostrarCategoria($categoria)
     {
-        $todosLosProductos = $this->obtenerDatos();
-
         if ($categoria == 'productos') {
-            $productos = [];
-            foreach ($todosLosProductos as $subcategoria) {
-                $productos = array_merge($productos, $subcategoria);
-            }
+
+            $productos = Producto::where('stock', '>', 0)->get();
+
             $titulo = "Todos los Productos";
+
         } else {
-            if (!array_key_exists($categoria, $todosLosProductos)) {
-                abort(404);
-            }
-            $productos = $todosLosProductos[$categoria];
+
+            $productos = Producto::where('stock', '>', 0)
+                ->whereHas('categoria', function ($query) use ($categoria) {
+                    $query->whereRaw('LOWER(nombre) = ?', [strtolower($categoria)]);
+                })
+                ->get();
+
+
             $titulo = ucfirst($categoria);
         }
 
@@ -61,23 +64,9 @@ class CatalogoController extends Controller
     // Muestra el detalle de un producto individual por su ID
     public function detalle($id)
     {
-        $categorias = $this->obtenerDatos();
-        $productoEncontrado = null;
+        $producto = Producto::where('stock', '>', 0)
+        ->findOrFail($id);
 
-        // Buscamos el producto con ese ID recorriendo todas las categorías
-        foreach ($categorias as $productos) {
-            foreach ($productos as $p) {
-                if ($p['id'] == $id) {
-                    $productoEncontrado = $p;
-                    break 2;
-                }
-            }
-        }
-
-        if (!$productoEncontrado) {
-            abort(404);
-        }
-
-        return view('producto_detalle', ['producto' => $productoEncontrado]);
+        return view('producto_detalle', compact('producto'));
     }
 }

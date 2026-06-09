@@ -110,13 +110,16 @@
 
                         <li><hr class="dropdown-divider"></li>
 
-                        {{-- ENLACE AL PANEL DE ADMINISTRACIÓN --}}
-                        <li>
-                            <a class="dropdown-item fw-bold" href="/admin" style="color: #5d4d7a;">
-                                <i class="bi bi-gear me-2"></i> Ir al Panel Admin
-                            </a>
-                        </li>
-                        
+                        <a class="dropdown-item" href="/profile">
+                            <i class="bi bi-person"></i>
+                            Gestionar Perfil
+                        </a>
+
+                        <a class="dropdown-item" href="/mis-pedidos">
+                            <i class="bi bi-bag"></i>
+                            Mis Pedidos
+                        </a>
+
                         <li><hr class="dropdown-divider"></li>
 
                         <li>
@@ -275,12 +278,15 @@
                         {{ Auth::user()->nombre }}
                     </div>
 
-                    {{-- ENLACE AL PANEL DE ADMINISTRACIÓN MOBILE --}}
-                    <div class="mb-3">
-                        <a href="/admin" class="btn-cerrar-mobile d-block text-start text-decoration-none" style="background: transparent; border: none;">
-                            <i class="bi bi-gear me-2"></i> Ir al Panel Admin
-                        </a>
-                    </div>
+                    <a href="/profile" class="btn-menu-usuario">
+                        <i class="bi bi-person-gear me-2"></i>
+                        Gestionar Perfil
+                    </a>
+
+                    <a href="/mis-pedidos" class="btn-menu-usuario">
+                        <i class="bi bi-bag-heart me-2"></i>
+                        Mis Pedidos
+                    </a>
 
                     <form action="/logout" method="POST">
                         @csrf

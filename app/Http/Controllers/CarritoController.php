@@ -25,34 +25,63 @@ class CarritoController extends Controller
     public function agregar(Request $request)
     {
         $carrito = session()->get('carrito', []);
-        
-        $idKey = $request->id . '_' . $request->talle;
+
+        $producto = Producto::find($request->id);
+
+        if (!$producto) {
+            return redirect()->back()
+                ->with('error', 'Producto no encontrado.');
+        }
+
+        $idKey = $request->id;
 
         if (isset($carrito[$idKey])) {
+
+            if ($carrito[$idKey]['cantidad'] >= $producto->stock) {
+                return redirect('/carrito')
+                    ->with('error', 'No hay más stock disponible.');
+            }
+
             $carrito[$idKey]['cantidad']++;
+
         } else {
+
             $carrito[$idKey] = [
-                'id' => $request->id,
-                'nombre' => $request->nombre,
-                'precio' => $request->precio,
-                'img' => $request->img,
-                'talle' => $request->talle,
+                'id' => $producto->id,
+                'nombre' => $producto->nombre,
+                'precio' => $producto->precio,
+                'img' => $producto->url_imagen,
                 'cantidad' => 1
             ];
         }
 
         session()->put('carrito', $carrito);
-        return redirect('/carrito')->with('success', 'Producto agregado al carrito');
+
+        return redirect('/carrito')
+            ->with('success', 'Producto agregado al carrito');
     }
 
     // Aumentar cantidad
     public function sumar($key)
     {
         $carrito = session()->get('carrito');
+
         if (isset($carrito[$key])) {
+
+            $producto = Producto::find($carrito[$key]['id']);
+
+            if ($producto && $carrito[$key]['cantidad'] >= $producto->stock) {
+
+                return redirect('/carrito')
+                    ->with('error', 'No hay más stock disponible.');
+
+            }
+
             $carrito[$key]['cantidad']++;
+
             session()->put('carrito', $carrito);
         }
+
         return redirect('/carrito');
     }
 
@@ -103,6 +132,24 @@ class CarritoController extends Controller
             $total += $item['precio'] * $item['cantidad'];
         }
 
+        foreach ($carrito as $item) {
+
+            $producto = Producto::find($item['id']);
+
+            if (!$producto) {
+                return redirect('/carrito')
+                    ->with('error', 'Uno de los productos ya no existe.');
+            }
+
+            if ($producto->stock < $item['cantidad']) {
+                return redirect('/carrito')
+                    ->with(
+                        'error',
+                        'No hay stock suficiente para "' . $producto->nombre . '".'
+                    );
+            }
+        }
+        
         // 1. Crear el Pedido Principal
         $pedido = Pedido::create([
             'numero_pedido' => 'ORD-' . strtoupper(uniqid()),
@@ -116,7 +163,7 @@ class CarritoController extends Controller
             DetallePedido::create([
                 'pedido_id' => $pedido->id,
                 'producto_id' => $item['id'],
-                'talle' => $item['talle'],
+                'talle' => '-',
                 'cantidad' => $item['cantidad'],
                 'precio_unitario' => $item['precio']
             ]);

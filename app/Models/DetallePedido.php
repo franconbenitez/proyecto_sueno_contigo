@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetallePedido extends Model
 {
-    protected $fillable = ['pedido_id', 'producto_id', 'talle', 'cantidad', 'precio_unitario'];
+    protected $fillable = [
+        'pedido_id',
+        'producto_id',
+        'talle',
+        'cantidad',
+        'precio_unitario'
+    ];
 
     public function producto()
     {
