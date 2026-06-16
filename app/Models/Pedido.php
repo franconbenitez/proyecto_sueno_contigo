@@ -12,6 +12,7 @@ class Pedido extends Model
         'numero_pedido',
         'persona_id',
         'total',
+        'descuento',
         'estado'
     ];
 

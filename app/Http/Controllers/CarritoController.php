@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pedido;
 use App\Models\DetallePedido;
-use App\Models\Producto; // <-- Agregado para poder modificar el stock
+use App\Models\Producto;
 use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
@@ -14,38 +14,47 @@ class CarritoController extends Controller
     public function index()
     {
         $carrito = session()->get('carrito', []);
-        $total = 0;
+        $subtotal = 0;
+        
         foreach ($carrito as $item) {
-            $total += $item['precio'] * $item['cantidad'];
+            $subtotal += $item['precio'] * $item['cantidad'];
         }
-        return view('carrito', compact('carrito', 'total'));
+
+        $descuento = 0;
+        $esPrimeraCompra = false;
+
+        // VERIFICAMOS SI APLICA EL 10% OFF
+        if (Auth::check()) {
+            $cantidadPedidos = Pedido::where('persona_id', Auth::id())->count();
+            if ($cantidadPedidos == 0 && $subtotal > 0) {
+                $esPrimeraCompra = true;
+                $descuento = $subtotal * 0.10; // 10% de descuento
+            }
+        }
+
+        $total = $subtotal - $descuento;
+
+        return view('carrito', compact('carrito', 'subtotal', 'descuento', 'total', 'esPrimeraCompra'));
     }
 
     // Agregar producto a la sesión
     public function agregar(Request $request)
     {
         $carrito = session()->get('carrito', []);
-
         $producto = Producto::find($request->id);
 
         if (!$producto) {
-            return redirect()->back()
-                ->with('error', 'Producto no encontrado.');
+            return redirect()->back()->with('error', 'Producto no encontrado.');
         }
 
         $idKey = $request->id;
 
         if (isset($carrito[$idKey])) {
-
             if ($carrito[$idKey]['cantidad'] >= $producto->stock) {
-                return redirect('/carrito')
-                    ->with('error', 'No hay más stock disponible.');
+                return redirect('/carrito')->with('error', 'No hay más stock disponible.');
             }
-
             $carrito[$idKey]['cantidad']++;
-
         } else {
-
             $carrito[$idKey] = [
                 'id' => $producto->id,
                 'nombre' => $producto->nombre,
@@ -56,32 +65,21 @@ class CarritoController extends Controller
         }
 
         session()->put('carrito', $carrito);
-
-        return redirect('/carrito')
-            ->with('success', 'Producto agregado al carrito');
+        return redirect('/carrito')->with('success', 'Producto agregado al carrito');
     }
 
     // Aumentar cantidad
     public function sumar($key)
     {
         $carrito = session()->get('carrito');
-
         if (isset($carrito[$key])) {
-
             $producto = Producto::find($carrito[$key]['id']);
-
             if ($producto && $carrito[$key]['cantidad'] >= $producto->stock) {
-
-                return redirect('/carrito')
-                    ->with('error', 'No hay más stock disponible.');
-
+                return redirect('/carrito')->with('error', 'No hay más stock disponible.');
             }
-
             $carrito[$key]['cantidad']++;
-
             session()->put('carrito', $carrito);
         }
-
         return redirect('/carrito');
     }
 
@@ -127,34 +125,36 @@ class CarritoController extends Controller
             return redirect('/catalogo/productos')->with('error', 'Tu carrito está vacío.');
         }
 
-        $total = 0;
+        $subtotal = 0;
         foreach ($carrito as $item) {
-            $total += $item['precio'] * $item['cantidad'];
+            $subtotal += $item['precio'] * $item['cantidad'];
         }
 
+        // CALCULAMOS EL DESCUENTO REAL AL COMPRAR
+        $descuento = 0;
+        $cantidadPedidos = Pedido::where('persona_id', Auth::id())->count();
+        if ($cantidadPedidos == 0) {
+            $descuento = $subtotal * 0.10;
+        }
+
+        $totalFinal = $subtotal - $descuento;
+
         foreach ($carrito as $item) {
-
             $producto = Producto::find($item['id']);
-
             if (!$producto) {
-                return redirect('/carrito')
-                    ->with('error', 'Uno de los productos ya no existe.');
+                return redirect('/carrito')->with('error', 'Uno de los productos ya no existe.');
             }
-
             if ($producto->stock < $item['cantidad']) {
-                return redirect('/carrito')
-                    ->with(
-                        'error',
-                        'No hay stock suficiente para "' . $producto->nombre . '".'
-                    );
+                return redirect('/carrito')->with('error', 'No hay stock suficiente para "' . $producto->nombre . '".');
             }
         }
         
-        // 1. Crear el Pedido Principal
+        // 1. Crear el Pedido Principal con el descuento
         $pedido = Pedido::create([
             'numero_pedido' => 'ORD-' . strtoupper(uniqid()),
             'persona_id' => Auth::id(),
-            'total' => $total,
+            'total' => $totalFinal,
+            'descuento' => $descuento, // Guardamos el descuento en la BD
             'estado' => 'Pendiente'
         ]);
 
@@ -168,10 +168,12 @@ class CarritoController extends Controller
                 'precio_unitario' => $item['precio']
             ]);
 
-            // Descontar del stock real
             $productoDB = Producto::find($item['id']);
             if ($productoDB) {
                 $productoDB->stock = $productoDB->stock - $item['cantidad'];
+                if ($productoDB->stock <= 0) {
+                    $productoDB->activo = false;
+                }
                 $productoDB->save();
             }
         }
@@ -179,6 +181,15 @@ class CarritoController extends Controller
         // 3. Vaciar la sesión
         session()->forget('carrito');
 
-        return redirect('/')->with('success', '¡Gracias por tu compra! Tu pedido ' . $pedido->numero_pedido . ' está siendo procesado.');
+        return redirect()->route('compra.exito')->with('numero_pedido', $pedido->numero_pedido);
+    }
+
+    // NUEVA FUNCIÓN: Muestra la pantalla de agradecimiento
+    public function gracias()
+    {
+        if (!session()->has('numero_pedido')) {
+            return redirect('/catalogo/productos');
+        }
+        return view('compra_exito');
     }
 }

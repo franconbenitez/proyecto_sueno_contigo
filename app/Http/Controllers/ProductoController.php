@@ -102,7 +102,6 @@ class ProductoController extends Controller
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'categoria_id' => 'required|exists:categorias,id',
-            // La imagen acá es NULLABLE (opcional), por si no quiere cambiarla
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048', 
         ], [
             'nombre.required' => 'El nombre del producto es obligatorio.',
@@ -117,7 +116,6 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
 
         if ($request->hasFile('imagen')) {
-
             // Borra la imagen anterior
             if ($producto->url_imagen &&
                 Storage::disk('public')->exists($producto->url_imagen)) {
@@ -133,8 +131,16 @@ class ProductoController extends Controller
         $producto->nombre = $request->nombre;
         $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
-        $producto->stock = $request->stock;
         $producto->categoria_id = $request->categoria_id;
+        
+        // ACTUALIZACIÓN INTELIGENTE DE STOCK Y ESTADO
+        $producto->stock = $request->stock;
+        
+        if ($producto->stock <= 0) {
+            $producto->activo = false; // Se inactiva si no hay stock
+        } else {
+            $producto->activo = true;  // Se reactiva si hay stock
+        }
 
         $producto->save();
 

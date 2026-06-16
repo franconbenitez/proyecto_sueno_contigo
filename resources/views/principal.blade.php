@@ -83,42 +83,38 @@
 
         <div class="row g-4 justify-content-center">
 
-            <div class="col-12 col-md-4">
-                <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/pijama1.jpeg') }}"
-                         class="card-img-top imagen-producto" alt="Pijama de Corazones">
-                    <div class="card-body">
-                        <h5 class="card-title">Pijama de Corazones</h5>
-                        <p class="card-text text-muted">Suave, fresco y cómodo</p>
-                        <p class="precio">$12.500</p>
-                        {{-- QUITADO: botón Ver más --}}
+            {{-- Bucle dinámico de los últimos 3 productos --}}
+            @forelse($nuevaColeccion as $productoNuevo)
+                <div class="col-12 col-md-4">
+                    <div class="card card-producto h-100 text-center shadow-sm">
+                        
+                        <img src="{{ asset('storage/' . $productoNuevo->url_imagen) }}"
+                             class="card-img-top imagen-producto" 
+                             alt="{{ $productoNuevo->nombre }}"
+                             style="object-fit: cover; height: 300px;">
+                             
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ $productoNuevo->nombre }}</h5>
+                            <p class="card-text text-muted flex-grow-1">{{ Str::limit($productoNuevo->descripcion, 35) }}</p>
+                            <p class="precio mb-3">${{ number_format($productoNuevo->precio, 2, ',', '.') }}</p>
+                            
+                            {{-- Agregamos el botón de Comprar Directo para no perder la venta impulsiva --}}
+                            <form action="/carrito/agregar" method="POST" class="mt-auto">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $productoNuevo->id }}">
+                                <button type="submit" class="btn text-white w-100" style="background-color: #5d4d7a; border-radius: 8px;">
+                                    <i class="bi bi-cart-plus me-1"></i> Comprar
+                                </button>
+                            </form>
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/pijama2.jpeg') }}"
-                         class="card-img-top imagen-producto" alt="Conjunto de Mantel">
-                    <div class="card-body">
-                        <h5 class="card-title">Conjunto de Mantel</h5>
-                        <p class="card-text text-muted">Elegante y delicado</p>
-                        <p class="precio">$18.000</p>
-                    </div>
+            @empty
+                <div class="col-12 text-center text-muted py-4">
+                    <p>¡Pronto subiremos cosas nuevas y hermosas!</p>
                 </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/pijama4.jpeg') }}"
-                         class="card-img-top imagen-producto" alt="Pijama Corazones Azules">
-                    <div class="card-body">
-                        <h5 class="card-title">Pijama Corazones Azules</h5>
-                        <p class="card-text text-muted">Lujo y comodidad</p>
-                        <p class="precio">$15.000</p>
-                    </div>
-                </div>
-            </div>
+            @endforelse
 
         </div>
     </div>
@@ -200,83 +196,14 @@
     </div>
 </div>
 
-
-{{-- SECCIÓN 7: RESEÑAS --}}
-<section class="py-5 seccion-resenas">
-    <div class="container">
-
-        <h2 class="titulo-seccion text-center mb-4">💬 Lo que dicen nuestras clientas</h2>
-
-        <div class="row g-4 justify-content-center">
-
-            <div class="col-12 col-md-4">
-                <div class="card card-resena text-center p-4">
-                    <p class="estrellas">⭐⭐⭐⭐⭐</p>
-                    <p class="texto-resena">"Hermosa calidad, súper cómoda"</p>
-                    <p class="autora-resena">— Valentina M.</p>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="card card-resena text-center p-4">
-                    <p class="estrellas">⭐⭐⭐⭐⭐</p>
-                    <p class="texto-resena">"Me encantó, voy a volver a comprar 💕"</p>
-                    <p class="autora-resena">— Camila R.</p>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="card card-resena text-center p-4">
-                    <p class="estrellas">⭐⭐⭐⭐⭐</p>
-                    <p class="texto-resena">"Tal cual las fotos, divina"</p>
-                    <p class="autora-resena">— Sofía L.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-{{-- SECCIÓN 8: PROMOCIONES --}}
+{{-- SECCIÓN 7: PROMOCIONES --}}
 <section class="py-5 seccion-promociones">
-    <div class="container">
-
-        <h2 class="titulo-seccion text-center mb-4">Promociones</h2>
-
-        <div id="carouselPromociones" class="carousel slide" data-bs-ride="carousel">
-
-            {{-- Indicadores --}}
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselPromociones" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#carouselPromociones" data-bs-slide-to="1"></button>
-            </div>
-
-            {{-- Imágenes --}}
-            <div class="carousel-inner rounded-4 shadow">
-
-                <div class="carousel-item active">
-                    <img src="{{ asset('imagenes/promo1.png') }}" class="d-block w-100 imagen-promo-nueva" alt="Promo 1">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="{{ asset('imagenes/promo2.png') }}" class="d-block w-100 imagen-promo-nueva" alt="Promo 2">
-                </div>
-
-
-            </div>
-
-            {{-- Flechas --}}
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromociones" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselPromociones" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-
+    <div class="container text-center">
+        <h2 class="titulo-seccion mb-4">Promociones</h2>
+        <div class="rounded-4 shadow overflow-hidden d-inline-block">
+            {{-- Mostramos solo el banner del 10% --}}
+            <img src="{{ asset('imagenes/promo1.png') }}" class="img-fluid" alt="10% de descuento en tu primera compra" style="max-height: 400px; width: auto;">
         </div>
-
     </div>
 </section>
 

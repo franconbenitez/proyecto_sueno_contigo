@@ -356,28 +356,81 @@
 {{-- ================================================
          FOOTER
          ================================================ --}}
-    <footer class="footer-principal text-center py-4 mt-5">
-        
-        {{-- Aquí reemplazamos el texto por tu logo --}}
-        <div class="footer-logo-container mb-3">
-            <img src="{{ asset('imagenes/logoblanco.png') }}" alt="Sueño Contigo" style="height: 50px; width: auto;">
+    <footer class="text-white py-5 mt-auto" style="background-color: #5d4d7a;">
+        <div class="container">
+            <div class="row g-4">
+                
+                {{-- Columna 1: Logo y Redes --}}
+                <div class="col-12 col-md-4 text-center text-md-start">
+                    <img src="{{ asset('imagenes/logoblanco.png') }}" alt="Sueño Contigo" style="height: 50px; width: auto;" class="mb-3">
+                    <p class="small text-white-50">
+                        Prendas pensadas para tu comodidad y descanso. Calidad premium en pijamas, batas, lencería y pantuflas. 🌸
+                    </p>
+                    <div class="d-flex gap-3 mt-3 justify-content-center justify-content-md-start">
+                        <a href="https://www.instagram.com/suenio.contigo" target="_blank" class="text-white text-decoration-none fs-5">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/543795340652" target="_blank" class="text-white text-decoration-none fs-5">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                {{-- Columna 2: Enlaces Rápidos --}}
+                <div class="col-12 col-sm-6 col-md-3 text-center text-md-start">
+                    <h5 class="fw-bold mb-3" style="font-size: 1.1rem;">Navegación</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="/" class="text-white-50 text-decoration-none small hover-link">Inicio</a></li>
+                        <li class="mb-2"><a href="/catalogo/productos" class="text-white-50 text-decoration-none small hover-link">Catálogo</a></li>
+                        <li class="mb-2"><a href="/contacto" class="text-white-50 text-decoration-none small hover-link">Contacto</a></li>
+                        <li class="mb-2"><a href="/terminos" class="text-white-50 text-decoration-none small hover-link">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+
+                {{-- Columna 3: Información de Contacto --}}
+                <div class="col-12 col-sm-6 col-md-2 text-center text-md-start">
+                    <h5 class="fw-bold mb-3" style="font-size: 1.1rem;">Contacto</h5>
+                    <ul class="list-unstyled mb-0 small text-white-50">
+                        <li class="mb-2">
+                            {{-- ¡Dirección actualizada acá! --}}
+                            <i class="bi bi-geo-alt-fill me-2 text-white"></i> 25 de Mayo 1853
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-whatsapp me-2 text-white"></i> 3795 340652
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-envelope-fill me-2 text-white"></i> 
+                            <span style="font-size: 0.85rem;">sueniaconmigopijamas@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                {{-- Columna 4: El Mapa Mágico --}}
+                <div class="col-12 col-md-3">
+                    <h5 class="fw-bold mb-3 text-center text-md-start" style="font-size: 1.1rem;">Ubicación</h5>
+                    <div class="ratio ratio-4x3 shadow-sm overflow-hidden rounded-3" style="max-height: 150px;">
+                        {{-- ¡Mapa actualizado a Edificio Sunset 2 / 25 de Mayo 1853! --}}
+                        <iframe 
+                            src="https://maps.google.com/maps?q=25+de+Mayo+1853,+Corrientes,+Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            class="w-100 h-100 border-0" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="mt-4 mb-3 opacity-25 bg-white">
+
+            {{-- Copyright --}}
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0 small text-white-50">© {{ date('Y') }} Sueño Contigo. Todos los derechos reservados.</p>
+                </div>
+            </div>
         </div>
-
-        <div class="footer-redes">
-            <a href="https://wa.me/543795340652" target="_blank" aria-label="WhatsApp">
-                <i class="bi bi-whatsapp"></i>
-            </a>
-
-            <a href="https://www.instagram.com/suenio.contigo" target="_blank" aria-label="Instagram">
-                <i class="bi bi-instagram"></i>
-            </a>
-
-            <a href="mailto:sueniaconmigopijamas@gmail.com" aria-label="Correo electrónico">
-                <i class="bi bi-envelope-fill"></i>
-            </a>
-        </div>
-
-        <p class="footer-copy mb-0">© 2026 Todos los derechos reservados</p>
     </footer>
 
 

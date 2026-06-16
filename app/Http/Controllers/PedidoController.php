@@ -27,8 +27,12 @@ class PedidoController extends Controller
         // CASO 1: Se está cancelando un pedido que no estaba cancelado
         if ($estadoAnterior != 'Cancelado' && $estadoNuevo == 'Cancelado') {
             foreach ($pedido->detalles as $detalle) {
-                if ($detalle->producto) { // Verificamos que el producto no haya sido eliminado de la BD
+                if ($detalle->producto) { 
                     $detalle->producto->stock += $detalle->cantidad;
+                    // Si se devuelve stock, reactivamos el producto automáticamente
+                    if ($detalle->producto->stock > 0) {
+                        $detalle->producto->activo = true;
+                    }
                     $detalle->producto->save();
                 }
             }
@@ -38,6 +42,10 @@ class PedidoController extends Controller
             foreach ($pedido->detalles as $detalle) {
                 if ($detalle->producto) {
                     $detalle->producto->stock -= $detalle->cantidad;
+                    // Si al quitar el stock llega a cero, lo inactivamos
+                    if ($detalle->producto->stock <= 0) {
+                        $detalle->producto->activo = false;
+                    }
                     $detalle->producto->save();
                 }
             }

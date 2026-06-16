@@ -11,36 +11,39 @@ class RegistroRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // <-- CAMBIAR A TRUE para que permita usarlo
+        return true;
     }
 
     /**
-     * Reglas de validación aplicadas al formulario.
+     * Reglas de validación.
      */
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|max:100',
-            'apellido' => 'required|string|max:100',
-            'email' => 'required|email|unique:personas,email', // Valida que sea único en la tabla personas
-            'password' => 'required|string|min:6|confirmed', // 'confirmed' exige que mandes un campo llamado password_confirmation
+            // El regex asegura que solo haya letras (a-z, A-Z), acentos y espacios
+            'nombre'   => ['required', 'string', 'max:100', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/'],
+            'apellido' => ['required', 'string', 'max:100', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/'],
+            'email'    => 'required|email|unique:personas,email',
+            'password' => 'required|string|min:8|confirmed',
         ];
     }
 
     /**
-     * Mensajes personalizados en castellano (Opcional, para que quede prolijo).
+     * Mensajes personalizados.
      */
     public function messages(): array
     {
         return [
-            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.required'   => 'El nombre es obligatorio.',
+            'nombre.regex'      => 'El nombre no puede contener números ni caracteres especiales.',
             'apellido.required' => 'El apellido es obligatorio.',
-            'email.required' => 'El correo electrónico es obligatorio.',
-            'email.email' => 'El formato del correo no es válido.',
-            'email.unique' => 'Este correo ya está registrado.',
+            'apellido.regex'    => 'El apellido no puede contener números ni caracteres especiales.',
+            'email.required'    => 'El correo electrónico es obligatorio.',
+            'email.email'       => 'El formato del correo no es válido.',
+            'email.unique'      => 'Este correo ya está registrado.',
             'password.required' => 'La contraseña es obligatoria.',
-            'password.min' => 'La contraseña debe tener al menos 6 caracteres.',
-            'password.confirmed' => 'Las contraseñas no coinciden.',
+            'password.min'      => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed'=> 'Las contraseñas no coinciden.',
         ];
     }
 }

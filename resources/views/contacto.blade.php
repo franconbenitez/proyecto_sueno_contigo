@@ -42,63 +42,90 @@
                 <div class="col-md-8">
                     <div class="card-legal p-4 shadow-sm">
 
-                        {{-- CORREGIDO: action apunta a /contacto con POST --}}
+                        {{-- Alerta general por si hay errores --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <strong>¡Ups!</strong> Por favor revisá los campos en rojo.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
                         <form action="{{ url('/contacto') }}" method="POST">
                             @csrf
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nombre</label>
-                                    <input
-                                        type="text"
-                                        name="nombre"
-                                        class="form-control"
-                                        placeholder="Tu nombre"
-                                        minlength="3"
+                                    <input 
+                                        type="text" 
+                                        name="nombre" 
+                                        class="form-control @error('nombre') is-invalid @enderror" 
+                                        placeholder="Tu nombre" 
+                                        minlength="3" 
+                                        value="{{ old('nombre') }}" 
                                         required>
+                                    @error('nombre')
+                                        <div class="invalid-feedback fw-bold"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>
+                                    @enderror
                                 </div>
+                                
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
-                                    {{-- CORREGIDO: type="email" garantiza que solo acepte correos válidos --}}
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        class="form-control"
-                                        placeholder="nombre@ejemplo.com"
+                                    <input 
+                                        type="email" 
+                                        name="email" 
+                                        class="form-control @error('email') is-invalid @enderror" 
+                                        placeholder="nombre@ejemplo.com" 
+                                        value="{{ old('email') }}" 
                                         required>
+                                    @error('email')
+                                        <div class="invalid-feedback fw-bold"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Número de pedido (opcional)</label>
-                                    <input
-                                        type="text"
-                                        name="pedido"
-                                        class="form-control"
-                                        placeholder="#1234">
+                                    <input 
+                                        type="text" 
+                                        name="pedido" 
+                                        class="form-control @error('pedido') is-invalid @enderror" 
+                                        placeholder="#1234"
+                                        value="{{ old('pedido') }}">
+                                    @error('pedido')
+                                        <div class="invalid-feedback fw-bold"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Tipo de consulta</label>
-                                    <select name="tipo_consulta" class="form-select">
-                                        <option value="">Elegir opción...</option>
-                                        <option value="pedido">Pedido</option>
-                                        <option value="talles">Talles</option>
-                                        <option value="envios">Envíos</option>
-                                        <option value="otro">Otro</option>
+                                    <select name="tipo_consulta" class="form-select @error('tipo_consulta') is-invalid @enderror" required>
+                                        <option value="" disabled {{ old('tipo_consulta') ? '' : 'selected' }}>Elegir opción...</option>
+                                        <option value="pedido" {{ old('tipo_consulta') == 'pedido' ? 'selected' : '' }}>Pedido</option>
+                                        <option value="talles" {{ old('tipo_consulta') == 'talles' ? 'selected' : '' }}>Talles</option>
+                                        <option value="envios" {{ old('tipo_consulta') == 'envios' ? 'selected' : '' }}>Envíos</option>
+                                        <option value="otro" {{ old('tipo_consulta') == 'otro' ? 'selected' : '' }}>Otro</option>
                                     </select>
+                                    @error('tipo_consulta')
+                                        <div class="invalid-feedback fw-bold"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Mensaje</label>
-                                <textarea
-                                    name="mensaje"
-                                    class="form-control"
-                                    rows="4"
-                                    placeholder="Escribinos tu consulta aquí..."
-                                    minlength="10"
-                                    required></textarea>
+                                <textarea 
+                                    name="mensaje" 
+                                    class="form-control @error('mensaje') is-invalid @enderror" 
+                                    rows="4" 
+                                    placeholder="Escribinos tu consulta aquí..." 
+                                    minlength="10" 
+                                    required>{{ old('mensaje') }}</textarea>
+                                @error('mensaje')
+                                    <div class="invalid-feedback fw-bold"><i class="bi bi-exclamation-circle"></i> {{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="text-end">

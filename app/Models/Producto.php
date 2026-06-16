@@ -10,28 +10,28 @@ class Producto extends Model
     use SoftDeletes;
 
     protected $fillable = [
-    'nombre',
-    'descripcion',
-    'precio',
-    'stock',
-    'url_imagen',
-    'categoria_id',
-    'activo'
+        'nombre', 'descripcion', 'precio', 'stock', 'url_imagen', 'categoria_id', 'activo'
+    ];
 
-];
+    protected $casts = [
+        'precio' => 'decimal:2',
+        'stock' => 'integer',
+        'activo' => 'boolean'
+    ];
 
-protected $casts = [
-    'precio' => 'decimal:2',
-    'stock' => 'integer',
-    'activo' => 'boolean'
-];
+    // ESTO SINCROINIZA STOCK Y ESTADO AUTOMÁTICAMENTE
+    protected static function booted()
+    {
+        static::saving(function ($producto) {
+            $producto->activo = ($producto->stock > 0);
+        });
+    }
 
-public function categoria()
-{
-    return $this->belongsTo(Categoria::class);
-}
+    public function categoria() {
+        return $this->belongsTo(Categoria::class);
+    }
 
-public function detalles(){
+    public function detalles(){
         return $this->hasMany(DetallePedido::class, 'producto_id');
     }
 }

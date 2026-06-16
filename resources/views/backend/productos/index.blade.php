@@ -67,21 +67,13 @@
                         </td>
 
                         <td>
-
                             @if($producto->deleted_at)
-
-                                <span class="badge bg-danger">
-                                    Eliminado
-                                </span>
-
+                                <span class="badge bg-danger">Eliminado</span>
+                            @elseif($producto->stock <= 0)
+                                <span class="badge bg-warning text-dark">Sin Stock</span>
                             @else
-
-                                <span class="badge bg-success">
-                                    Activo
-                                </span>
-
+                                <span class="badge bg-success">Activo</span>
                             @endif
-
                         </td>
 
                         <td>
