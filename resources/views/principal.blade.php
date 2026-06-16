@@ -133,41 +133,27 @@
 
         <div class="row g-4 justify-content-center">
 
-            <div class="col-12 col-md-4">
-                <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/pijama6.jpeg') }}"
-                         class="card-img-top imagen-producto" alt="Camisa Moñitos">
-                    <div class="card-body">
-                        <h5 class="card-title">Camisa Moñitos</h5>
-                        <p class="card-text text-muted">Abrigado y suave</p>
-                        <p class="precio">$15.000</p>
+            {{-- Bucle dinámico del Top 3 --}}
+            @forelse($masVendidos as $producto)
+                <div class="col-12 col-md-4">
+                    <div class="card card-producto h-100 text-center">
+                        {{-- Usamos 'storage/' como me indicaste en tu resumen de arreglos --}}
+                        <img src="{{ asset('storage/' . $producto->url_imagen) }}"
+                             class="card-img-top imagen-producto" alt="{{ $producto->nombre }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $producto->nombre }}</h5>
+                            {{-- Str::limit corta la descripción si es muy larga para no deformar la tarjeta --}}
+                            <p class="card-text text-muted">{{ Str::limit($producto->descripcion, 35) }}</p>
+                            <p class="precio">${{ number_format($producto->precio, 2, ',', '.') }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/pijama10.jpeg') }}"
-                         class="card-img-top imagen-producto" alt="Conjunto Hello Kitty">
-                    <div class="card-body">
-                        <h5 class="card-title">Conjunto Hello Kitty</h5>
-                        <p class="card-text text-muted">Tiernas y cómodas</p>
-                        <p class="precio">$8.500</p>
-                    </div>
+            @empty
+                {{-- Por si la base de datos está vacía o no hay ventas todavía --}}
+                <div class="col-12 text-center text-muted py-4">
+                    <p>¡Pronto verás nuestros productos estrella aquí!</p>
                 </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="card card-producto h-100 text-center">
-                    <img src="{{ asset('imagenes/pijama9.jpeg') }}"
-                         class="card-img-top imagen-producto" alt="Camisa Osito">
-                    <div class="card-body">
-                        <h5 class="card-title">Camisa Osito</h5>
-                        <p class="card-text text-muted">Sensual y confortable</p>
-                        <p class="precio">$20.000</p>
-                    </div>
-                </div>
-            </div>
+            @endforelse
 
         </div>
     </div>

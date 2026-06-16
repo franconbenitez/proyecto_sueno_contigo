@@ -30,4 +30,8 @@ public function categoria()
 {
     return $this->belongsTo(Categoria::class);
 }
+
+public function detalles(){
+        return $this->hasMany(DetallePedido::class, 'producto_id');
+    }
 }

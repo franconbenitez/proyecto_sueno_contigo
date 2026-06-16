@@ -116,7 +116,11 @@ Route::post('/usuarios', [UsuarioController::class, 'store'])
 Route::get('/consultas', [ConsultaController::class, 'index'])
     ->middleware('admin')
     ->name('consultas.index');
-    Route::get('/pedidos', [PedidoController::class, 'index'])
+Route::get('/pedidos', [PedidoController::class, 'index'])
     ->middleware('admin')
     ->name('pedidos.index');
-    Route::put('/pedidos/{id}/estado', [PedidoController::class, 'actualizarEstado'])->middleware('admin');
+Route::put('/pedidos/{id}/estado', [PedidoController::class, 'actualizarEstado'])->middleware('admin');
+
+Route::post('/admin/consultas/{id}/toggle', [ConsultaController::class, 'toggleLeido'])->name('consultas.toggle');
+Route::post('/admin/consultas/{id}/responder', [ConsultaController::class, 'responder'])->name('consultas.responder');
+Route::get('/mis-consultas', [App\Http\Controllers\PerfilController::class, 'consultas'])->name('mis.consultas');

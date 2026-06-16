@@ -31,43 +31,39 @@ p, a, li, input, button {
     font-family: 'Lato', sans-serif;
 }
 
-
 /* ===========================
-   NAVBAR ESCRITORIO font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: white;
-    letter-spacing: 1px;
-    white-space: nowrap;
+   NAVBAR ESCRITORIO
    =========================== */
 #navbar-principal {
     background-color: var(--color-rosa-claro);
     padding: 12px 0;
 }
 
-#navbar-principal .navbar-brand{
+#navbar-principal .navbar-brand {
     padding: 0;
     display: flex;
     align-items: center;
 }
 
-#navbar-principal .navbar-brand img{
+#navbar-principal .navbar-brand img {
     transition: transform 0.3s ease;
 }
 
-#navbar-principal .navbar-brand img:hover{
+#navbar-principal .navbar-brand img:hover {
     transform: scale(1.05);
 }
 
 #navbar-principal .nav-link {
     color: rgba(255, 255, 255, 0.85);
-    font-size: 1.05rem;
-    letter-spacing: 0.4px;
+    font-family: 'Lato', sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
     transition: color 0.2s;
     padding: 6px 10px;
     padding-left: 10px !important;
     padding-right: 10px !important;
-    font-size: 0.9rem;
 }
 
 #navbar-principal .nav-link:hover {
@@ -79,7 +75,8 @@ p, a, li, input, button {
     background: none;
     border: none;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.3rem !important;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     padding: 4px 6px;
     transition: color 0.2s;
@@ -91,7 +88,6 @@ p, a, li, input, button {
 .btn-icono-nav:hover {
     color: var(--color-verde);
 }
-
 
 /* ===========================
    BUSCADOR DESPLEGABLE ESCRITORIO
@@ -134,7 +130,6 @@ p, a, li, input, button {
     outline: none;
 }
 
-
 /* ===========================
    NAVBAR MOBILE
    =========================== */
@@ -147,7 +142,7 @@ p, a, li, input, button {
 }
 
 .brand-mobile {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
@@ -156,12 +151,11 @@ p, a, li, input, button {
     transform: translateX(-50%);
 }
 
-.brand-mobile img{
+.brand-mobile img {
     height: 35px;
     width: auto;
     object-fit: contain;
 }
-
 
 /* ===========================
    MENÚ LATERAL (OFFCANVAS)
@@ -230,7 +224,6 @@ p, a, li, input, button {
     color: var(--color-verde);
 }
 
-
 /* ===========================
     FOOTER
    =========================== */
@@ -271,9 +264,8 @@ p, a, li, input, button {
     transform: scale(1.2);
 }
 
-
 /* ===========================
-   BANNER HERO background: linear-gradient(135deg, var(--color-principal), var(--color-rosa));
+   BANNER HERO
    =========================== */
 .banner-hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/imagenes/banner.jpeg');
@@ -332,7 +324,6 @@ p, a, li, input, button {
     color: white;
 }
 
-
 /* ===========================
    MINI TEXTO
    =========================== */
@@ -346,7 +337,6 @@ p, a, li, input, button {
     font-weight: 400;
 }
 
-
 /* ===========================
    CARRUSEL DE FOTOS
    =========================== */
@@ -354,7 +344,6 @@ p, a, li, input, button {
     height: 450px;
     object-fit: cover;
 }
-
 
 /* ===========================
    TÍTULOS DE SECCIONES
@@ -367,7 +356,6 @@ p, a, li, input, button {
     letter-spacing: 1px;
 }
 
-
 /* ===========================
    CARDS DE PRODUCTOS
    =========================== */
@@ -375,17 +363,18 @@ p, a, li, input, button {
     border: 1px solid rgba(140, 82, 255, 0.12);
     border-radius: 16px;
     box-shadow: 0 2px 12px rgba(140, 82, 255, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+    background-color: #fffafa;
     overflow: hidden;
 }
 
 .card-producto:hover {
-    transform: translateY(-6px);
+    transform: translateY(-10px);
     box-shadow: 0 8px 25px rgba(140, 82, 255, 0.18);
 }
 
-.imagen-producto {
-    height: 220px;
+.card-producto img {
+    height: 250px;
     object-fit: cover;
 }
 
@@ -411,7 +400,6 @@ p, a, li, input, button {
     background-color: var(--color-principal);
     color: white;
 }
-
 
 /* ===========================
    CATEGORÍAS INTERACTIVAS
@@ -448,6 +436,24 @@ p, a, li, input, button {
     letter-spacing: 0.5px;
 }
 
+/* Efecto para las tarjetas de categorías en la Home */
+.card-categoria-home {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    background-color: #fffafa;
+}
+
+.card-categoria-home:hover {
+    transform: translateY(-8px);
+    background-color: #fce4ec;
+    box-shadow: 0 10px 20px rgba(93, 77, 122, 0.15) !important;
+}
+
+.card-categoria-home p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #5d4d7a;
+}
 
 /* ===========================
    RESEÑAS
@@ -484,14 +490,10 @@ p, a, li, input, button {
     letter-spacing: 0.5px;
 }
 
-
-
-
 /* ===========================
    RESPONSIVE MOBILE
    =========================== */
 @media (max-width: 991px) {
-
     .titulo-hero {
         font-size: 2.4rem;
     }
@@ -509,14 +511,9 @@ p, a, li, input, button {
     }
 }
 
-
-
 /* ================================================
    ESTILOS PARA: quienes_somos.blade.php
-   Agregar al final de tu archivo public/css/estilos.css
    ================================================ */
-
-/* --- Banner de página (encabezado interno) --- */
 .banner-pagina {
     background: linear-gradient(135deg, #fce4ec, #f8bbd9);
     padding: 60px 0;
@@ -535,14 +532,12 @@ p, a, li, input, button {
     color: #9c4775;
 }
 
-/* --- Imagen sección quiénes somos --- */
 .imagen-quienes {
     max-width: 320px;
     border: 3px solid #f8bbd9;
     box-shadow: 0 8px 24px rgba(200, 80, 130, 0.15);
 }
 
-/* --- Texto general de la página --- */
 .texto-quienes {
     font-family: 'Lato', sans-serif;
     font-size: 1.05rem;
@@ -551,7 +546,6 @@ p, a, li, input, button {
     margin-bottom: 1rem;
 }
 
-/* --- Sección esencia --- */
 .seccion-esencia {
     background-color: #fff0f6;
     border-radius: 16px;
@@ -562,7 +556,6 @@ p, a, li, input, button {
     font-size: 3.5rem;
 }
 
-/* --- Cards de valores --- */
 .card-valor {
     border: 1px solid #f8bbd9;
     border-radius: 16px;
@@ -579,7 +572,6 @@ p, a, li, input, button {
     font-size: 2.2rem;
 }
 
-/* --- Sección equipo --- */
 .seccion-equipo {
     background-color: #fce4ec;
 }
@@ -596,7 +588,6 @@ p, a, li, input, button {
     transform: translateY(-4px);
 }
 
-/* Avatar circular con inicial */
 .avatar-equipo {
     width: 70px;
     height: 70px;
@@ -630,7 +621,6 @@ p, a, li, input, button {
     margin-bottom: 0.8rem;
 }
 
-/* --- Sección CTA (llamado a la acción) --- */
 .seccion-cta {
     background: linear-gradient(135deg, #fce4ec, #f8bbd9);
     border-radius: 16px;
@@ -638,7 +628,7 @@ p, a, li, input, button {
 }
 
 /* ===========================
-    ESTILOS PÁGINAS LEGALES (Términos, Comercialización, etc.)
+    ESTILOS PÁGINAS LEGALES
    =========================== */
 .container-legal {
     min-height: 70vh;
@@ -647,11 +637,11 @@ p, a, li, input, button {
 .titulo-legal {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 600;
-    color: #5d4d7a; /* Violeta oscuro que ya venís usando */
+    color: #5d4d7a;
 }
 
 .card-legal {
-    background-color: #fffafa; /* Blanco hueso para que no canse la vista */
+    background-color: #fffafa;
     border-radius: 15px;
     border: none;
 }
@@ -668,11 +658,32 @@ p, a, li, input, button {
     line-height: 1.6;
 }
 
+.texto-legal {
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: #4a4a4a;
+    line-height: 1.8;
+}
+
+.texto-legal-italic {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.intro-legal {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.05rem;
+    color: #5a5a5a;
+    line-height: 1.7;
+}
+
 /* ===========================
     ESTILOS ESPECÍFICOS INFORMACIÓN
    =========================== */
 .tabla-talles {
-    border: 1px solid #f8d7da; /* Color rosa suave que combina con tu marca */
+    border: 1px solid #f8d7da;
     border-radius: 10px;
     overflow: hidden;
     margin-top: 15px;
@@ -695,18 +706,14 @@ p, a, li, input, button {
 }
 
 /* ================================================
-   ESTILOS PARA: login.blade.php y registro.blade.php
-   Agregar al final de public/css/estilos.css
+   ESTILOS PARA: login y registro
    ================================================ */
-
-/* --- Sección contenedora --- */
 .seccion-auth {
     min-height: calc(100vh - 160px);
     background: linear-gradient(160deg, #fce4ec 0%, #fff0f6 50%, #f8bbd9 100%);
     padding: 40px 16px;
 }
 
-/* --- Card del formulario --- */
 .card-auth {
     background: #fff;
     border-radius: 24px;
@@ -722,7 +729,6 @@ p, a, li, input, button {
     }
 }
 
-/* --- Encabezado --- */
 .auth-icono {
     font-size: 2.6rem;
     display: block;
@@ -744,7 +750,6 @@ p, a, li, input, button {
     margin-bottom: 0;
 }
 
-/* --- Labels e inputs --- */
 .auth-label {
     font-family: 'Lato', sans-serif;
     font-size: 0.88rem;
@@ -778,7 +783,6 @@ p, a, li, input, button {
     color: #cba0b8;
 }
 
-/* --- Input con ojo (contraseña) --- */
 .input-password-wrap {
     position: relative;
     display: flex;
@@ -806,7 +810,6 @@ p, a, li, input, button {
     color: #6d1f4e;
 }
 
-/* --- Recordar + olvidé --- */
 .recordar-label {
     display: flex;
     align-items: center;
@@ -839,7 +842,6 @@ p, a, li, input, button {
     text-decoration: underline;
 }
 
-/* --- Botón principal del formulario --- */
 .btn-auth-primary {
     display: block;
     width: 100%;
@@ -867,7 +869,6 @@ p, a, li, input, button {
     transform: translateY(0);
 }
 
-/* --- Separador "o continuá con" --- */
 .separador-auth {
     display: flex;
     align-items: center;
@@ -885,7 +886,6 @@ p, a, li, input, button {
     background-color: #f0c0d8;
 }
 
-/* --- Botones sociales --- */
 .btn-social {
     display: flex;
     align-items: center;
@@ -917,7 +917,6 @@ p, a, li, input, button {
     flex-shrink: 0;
 }
 
-/* --- Pie del formulario --- */
 .auth-pie {
     font-family: 'Lato', sans-serif;
     font-size: 0.9rem;
@@ -941,18 +940,18 @@ p, a, li, input, button {
     ESTILOS PÁGINA CONTACTO
    =========================== */
 .color-primario {
-    color: #5d4d7a !important; /* El violeta de tu marca */
+    color: #5d4d7a !important;
 }
 
 .form-control, .form-select {
     border-radius: 10px;
-    border: 1px solid #fce4ec; /* Rosa suave */
+    border: 1px solid #fce4ec;
     padding: 10px;
 }
 
 .form-control:focus, .form-select:focus {
     border-color: #5d4d7a;
-    box-shadow: 0 0 0 0.25 mil rem rgba(93, 77, 122, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(93, 77, 122, 0.25);
 }
 
 .form-label {
@@ -961,18 +960,32 @@ p, a, li, input, button {
     font-size: 0.9rem;
 }
 
-.card-producto {
-    transition: transform 0.3s ease;
-    background-color: #fffafa;
+.subtitulo-contacto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
-.card-producto:hover {
-    transform: translateY(-10px);
+.aviso-contacto {
+    background-color: rgba(252, 228, 236, 0.5);
 }
 
-.card-producto img {
-    height: 250px;
-    object-fit: cover; /* Mantiene la proporción de la foto del pijama */
+.btn-enviar-contacto {
+    background-color: #5d4d7a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 28px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-enviar-contacto:hover {
+    background-color: #4a3d65;
+    transform: translateY(-1px);
 }
 
 /* Estilo para el dropdown del navbar */
@@ -985,30 +998,31 @@ p, a, li, input, button {
     color: #5d4d7a;
 }
 
-/* Efecto para las tarjetas de categorías en la Home */
-.card-categoria-home {
-    transition: all 0.3s ease;
-    border-radius: 15px;
-    background-color: #fffafa; /* El blanco lencería que usamos */
-}
-
-.card-categoria-home:hover {
-    transform: translateY(-8px);
-    background-color: #fce4ec; /* Rosa suave al pasar el mouse */
-    box-shadow: 0 10px 20px rgba(93, 77, 122, 0.15) !important;
-}
-
-.card-categoria-home p {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #5d4d7a; /* El violeta de Sueño Contigo */
-}
-
 /* ================================================
-   BLOQUE DE CORRECCIONES - PEGAR AL FINAL DE estilos.css
+   BOTONES E IMÁGENES VARIAS
    ================================================ */
+.btn-carrito {
+    background-color: #5d4d7a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
 
-/* --- Logos (reemplaza los style="" inline del HTML) --- */
+.btn-carrito:hover {
+    background-color: #4a3d65;
+    color: white;
+}
+
 .logo-navbar {
     height: 40px;
     width: auto;
@@ -1040,110 +1054,42 @@ p, a, li, input, button {
     transform: scale(1.05);
 }
 
-
-
-
-/* --- TIPOGRAFÍA MEJORADA para páginas legales ---
-   Información, Términos, Contacto (títulos e intro)
-   ------------------------------------------------ */
-.texto-legal {
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-    color: #4a4a4a;
-    line-height: 1.8;
+/* ===========================
+   CARRUSEL PROMOCIONES
+   =========================== */
+.seccion-promociones {
+    background: var(--color-azul);
+    padding: 50px 0;
 }
 
-.texto-legal-italic {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.9rem;
-    color: #6c757d;
-    font-style: italic;
+#carouselPromociones .carousel-inner {
+    border-radius: 15px;
+    overflow: hidden;
+    background: #f3e5f5;
 }
 
-.intro-legal {
-    font-family: 'Lato', sans-serif;
-    font-size: 1.05rem;
-    color: #5a5a5a;
-    line-height: 1.7;
-}
-
-.subtitulo-contacto {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-
-/* Aviso "Te responderemos a la brevedad" */
-.aviso-contacto {
-    background-color: rgba(252, 228, 236, 0.5);
-}
-
-/* Botón enviar del formulario de contacto (reemplaza style inline) */
-.btn-enviar-contacto {
-    background-color: #5d4d7a;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 28px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.15s ease;
-}
-
-.btn-enviar-contacto:hover {
-    background-color: #4a3d65;
-    transform: translateY(-1px);
-}
-
-/* Botón "Añadir al carrito" del catálogo (reemplaza style inline) */
-.btn-carrito {
-    background-color: #5d4d7a;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 16px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
+#carouselPromociones .imagen-promo-nueva {
     width: 100%;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    text-decoration: none;
-    display: block;
-    text-align: center;
+    height: auto;
+    aspect-ratio: 3/1;
+    object-fit: cover;
 }
 
-.btn-carrito:hover {
-    background-color: #4a3d65;
-    color: white;
-}
-
-/* CARRUSEL PROMOCIONES - SOLUCIONADO */
-.seccion-promociones
-{background:var(--color-azul);padding:50px 0}
-#carouselPromociones 
-.carousel-inner{border-radius:15px;overflow:hidden;background:#f3e5f5}
-#carouselPromociones 
-.imagen-promo-nueva{width:100%;height:auto;aspect-ratio:3/1;object-fit:cover}
-
-/* Color uniforme para todo el menú mobile */
+/* ===========================
+   MENÚ MOBILE (DETALLES)
+   =========================== */
 #menuLateral .nav-link {
-    color: white !important; /* O el color exacto que uses en "Inicio" */
+    color: white !important;
 }
 
-/* Estilo base de la flechita */
 .flechita-catalogo {
     transition: transform 0.3s ease;
 }
 
-/* Rotación cuando el menú está abierto */
 [aria-expanded="true"] .flechita-catalogo {
     transform: rotate(180deg);
 }
 
-/* Efecto visual para las subcategorías */
 #collapseCatalogo .nav-link {
     font-size: 0.95rem;
     font-weight: 300;
@@ -1151,8 +1097,7 @@ p, a, li, input, button {
 
 /* =========================================
    USUARIO LOGUEADO NAVBAR
-========================================= */
-
+   ========================================= */
 .usuario-logueado {
     display: flex;
     align-items: center;
@@ -1160,16 +1105,17 @@ p, a, li, input, button {
 }
 
 .nombre-usuario-navbar {
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-family: 'Lato', sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 }
-
-/* =========================================
-   MOBILE
-========================================= */
 
 .usuario-mobile-logueado {
     color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .btn-cerrar-mobile {
@@ -1186,27 +1132,15 @@ p, a, li, input, button {
     background: rgba(255,255,255,0.1);
 }
 
-.usuario-mobile-logueado {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .usuario-mobile-logueado .btn-menu-usuario {
     display: block !important;
     width: 100% !important;
-
     padding: 12px 16px !important;
-
     background-color: rgba(255,255,255,0.12) !important;
     color: white !important;
-
     text-decoration: none !important;
-
     border-radius: 12px !important;
-
     font-weight: 500 !important;
-
     transition: 0.3s ease;
 }
 

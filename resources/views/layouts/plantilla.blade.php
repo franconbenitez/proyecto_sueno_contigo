@@ -15,8 +15,8 @@
     {{-- Google Fonts --}}
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-    {{-- CSS personalizado --}}
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    {{-- CSS personalizado con anti-caché --}}
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v={{ time() }}">
 </head>
 <body>
 
@@ -110,15 +110,39 @@
 
                         <li><hr class="dropdown-divider"></li>
 
-                        <a class="dropdown-item" href="/profile">
-                            <i class="bi bi-person"></i>
-                            Gestionar Perfil
-                        </a>
+                        {{-- ==============================================
+                             VALIDACIÓN ESCRITORIO: BOTÓN ADMIN
+                             ============================================== --}}
+                        @if(Auth::user()->perfil_id == 1)
+                        <li>
+                            <a class="dropdown-item fw-bold" href="/admin" style="color: #5d4d7a;">
+                                <i class="bi bi-shield-lock me-2"></i> Panel de Admin
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        @endif
 
-                        <a class="dropdown-item" href="/mis-pedidos">
-                            <i class="bi bi-bag"></i>
-                            Mis Pedidos
-                        </a>
+                        <li>
+                            <a class="dropdown-item" href="/profile">
+                                <i class="bi bi-person me-2"></i>
+                                Gestionar Perfil
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="/mis-pedidos">
+                                <i class="bi bi-bag me-2"></i>
+                                Mis Pedidos
+                            </a>
+                        </li>
+
+                        {{-- NUEVO BOTÓN: MIS CONSULTAS (ESCRITORIO) --}}
+                        <li>
+                            <a class="dropdown-item" href="/mis-consultas">
+                                <i class="bi bi-chat-dots me-2"></i>
+                                Mis Consultas
+                            </a>
+                        </li>
 
                         <li><hr class="dropdown-divider"></li>
 
@@ -201,7 +225,7 @@
     <div class="offcanvas offcanvas-start" id="menuLateral">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="menuLateralLabel">
-                <img src="{{ ('imagenes/logoblanco.png') }}" alt="Logo" style="height: 30px; width:auto;">
+                <img src="{{ asset('imagenes/logoblanco.png') }}" alt="Logo" style="height: 30px; width:auto;">
             </h5>
             <button type="button" class="btn-close btn-close-white"
                     data-bs-dismiss="offcanvas"></button>
@@ -278,6 +302,16 @@
                         {{ Auth::user()->nombre }}
                     </div>
 
+                    {{-- ==============================================
+                         VALIDACIÓN CELULARES: BOTÓN ADMIN
+                         ============================================== --}}
+                    @if(Auth::user()->perfil_id == 1)
+                    <a href="/admin" class="btn-menu-usuario" style="background-color: rgba(93, 77, 122, 0.4) !important;">
+                        <i class="bi bi-shield-lock me-2"></i>
+                        Panel de Admin
+                    </a>
+                    @endif
+
                     <a href="/profile" class="btn-menu-usuario">
                         <i class="bi bi-person-gear me-2"></i>
                         Gestionar Perfil
@@ -288,9 +322,15 @@
                         Mis Pedidos
                     </a>
 
+                    {{-- NUEVO BOTÓN: MIS CONSULTAS (MÓVIL) --}}
+                    <a href="/mis-consultas" class="btn-menu-usuario">
+                        <i class="bi bi-chat-dots me-2"></i>
+                        Mis Consultas
+                    </a>
+
                     <form action="/logout" method="POST">
                         @csrf
-                        <button type="submit" class="btn-cerrar-mobile text-danger">
+                        <button type="submit" class="btn-cerrar-mobile text-danger mt-2">
                             <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
                         </button>
                     </form>
